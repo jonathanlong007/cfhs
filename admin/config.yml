@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: your-username/canal-fulton-heritage # Replace with your repo link
+  repo: jonathanlong007/cfhs # Replace with your repo link
   branch: main
 
 media_folder: "images" # Where volunteer-uploaded photos will go
