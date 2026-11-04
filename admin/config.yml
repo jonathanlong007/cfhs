@@ -2,6 +2,7 @@ backend:
   name: github
   repo: jonathanlong007/cfhs # Replace with your repo link
   branch: main
+  open_authoring: true # <-- allow volunteers to submit
 
 media_folder: "images" # Where volunteer-uploaded photos will go
 public_folder: "/images"
