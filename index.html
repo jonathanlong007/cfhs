@@ -1,132 +1,320 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canal Fulton Heritage Society</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- =========================================================================
+     CANAL FULTON HERITAGE SOCIETY - RESPONSIVE NAVIGATION COMPONENT
+     Based on Desktop Layout Tier 1 (Light Canvas + 3-Button Action Array)
+     ========================================================================= -->
 
-    <!-- STICKY HEADER & ACCESSIBLE NAVIGATION -->
-    <header class="main-header">
-        <div class="header-container">
-            <a href="#" class="logo">CF<span class="crimson-text">Heritage</span></a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#history">Explore History</a></li>
-                    <li><a href="#museums">Visit Museums</a></li>
-                    <li><a href="#involved">Get Involved</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header class="cfhs-site-header">
+  <div class="cfhs-nav-container">
+    
+    <!-- Left Section: Branding and Logo Lockup -->
+    <a href="/" class="cfhs-brand-lockup" aria-label="Canal Fulton Heritage Society Home">
+      <img src="http://cfheritage.org" alt="Canal Fulton Heritage Society Official Seal" class="cfhs-brand-seal">
+      <div class="cfhs-brand-text">
+        <span class="cfhs-title-main">Canal Fulton</span>
+        <span class="cfhs-title-sub">Heritage Society</span>
+      </div>
+    </a>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Preserving the Historic Canal Era</h1>
-            <p>Welcome to the home of the St. Helena III, historic lock preservation, and the deep roots of Canal Fulton, Ohio.</p>
-            <a href="#museums" class="btn-primary">Plan Your Visit</a>
-        </div>
-    </section>
+    <!-- Mobile Menu Toggle Button (Hamburger) -->
+    <button class="cfhs-mobile-toggle" aria-expanded="false" aria-controls="cfhs-main-navigation" aria-label="Toggle navigation menu">
+      <span class="cfhs-toggle-bar"></span>
+      <span class="cfhs-toggle-bar"></span>
+      <span class="cfhs-toggle-bar"></span>
+    </button>
 
-    <main class="content-wrapper">
-        
-        <!-- MUSEUM LOGISTICS HUB / INFORMATION CARD GRID -->
-        <section id="museums" class="section-container">
-            <h2 class="section-title">Museum Operating Hours & Locations</h2>
-            <div class="card-grid">
-                
-                <!-- Card 1 -->
-                <div class="hub-card">
-                    <div class="card-status-banner">Open Seasonal</div>
-                    <div class="card-body">
-                        <h3>Heritage House & Museum</h3>
-                        <p class="hours"><strong>Hours:</strong> Sat & Sun, 1:00 PM – 4:00 PM</p>
-                        <p class="description">Our central archives showcasing early canal artifacts, model boats, and community histories.</p>
-                        <a href="#" class="btn-secondary">View Details</a>
-                    </div>
-                </div>
+    <!-- Center/Right Section: Primary Navigation Links & Actions -->
+    <nav id="cfhs-main-navigation" class="cfhs-nav-menu" aria-label="Primary Navigation">
+      <ul class="cfhs-nav-list">
+        <li class="cfhs-nav-item">
+          <a href="/explore" class="cfhs-nav-link">Explore History</a>
+        </li>
+        <li class="cfhs-nav-item">
+          <a href="/museums" class="cfhs-nav-link">Visit Museums</a>
+        </li>
+        <li class="cfhs-nav-item">
+          <a href="/events" class="cfhs-nav-link">Events</a>
+        </li>
+        <li class="cfhs-nav-item">
+          <a href="/get-involved" class="cfhs-nav-link">Get Involved</a>
+        </li>
+      </ul>
+      
+      <!-- Integrated Top-Right Quick Actions Array -->
+      <div class="cfhs-nav-actions">
+        <a href="/donate" class="cfhs-btn-action cfhs-btn-crimson">Donate Now</a>
+        <a href="/membership" class="cfhs-btn-action cfhs-btn-outline">Become a Member</a>
+      </div>
+    </nav>
 
-                <!-- Card 2 -->
-                <div class="hub-card">
-                    <div class="card-status-banner">By Appointment</div>
-                    <div class="card-body">
-                        <h3>Oberlin House Museum</h3>
-                        <p class="hours"><strong>Hours:</strong> Special Event Tours Only</p>
-                        <p class="description">Experience life in a historic 19th-century home restored meticulously to its founding era.</p>
-                        <a href="#" class="btn-secondary">View Details</a>
-                    </div>
-                </div>
+  </div>
+</header>
 
-                <!-- Card 3 -->
-                <div class="hub-card">
-                    <div class="card-status-banner">Open Daily</div>
-                    <div class="card-body">
-                        <h3>Lock 4 & Dry Dock Parcels</h3>
-                        <p class="hours"><strong>Hours:</strong> Dawn to Dusk</p>
-                        <p class="description">Walk alongside an authentic, surviving piece of the historic Ohio & Erie Canal infrastructure.</p>
-                        <a href="#" class="btn-secondary">View Details</a>
-                    </div>
-                </div>
+<style>
+/* =========================================================================
+   NAVIGATION STYLING SHEET (Mobile-First Architecture)
+   ========================================================================= */
 
-            </div>
-        </section>
+:root {
+  --cfhs-crimson: #b32025;
+  --cfhs-crimson-hover: #8f161a;
+  --cfhs-cream: #fbf9f4;
+  --cfhs-charcoal: #2a2a2a;
+  --cfhs-white: #ffffff;
+  --cfhs-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --cfhs-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        <!-- HISTORICAL TIMELINE ACCORDION SYSTEM -->
-        <section id="history" class="section-container content-reader">
-            <h2 class="section-title">Dense Archives & Multi-Era Timeline</h2>
-            <p class="intro-text">Explore the sequential growth transitions from early Ohio frontier settlements to the boom of the canal era.</p>
+/* Global Reset Overrides for Nav Bar Integration */
+.cfhs-site-header * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--cfhs-font-sans);
+}
 
-            <div class="accordion-group">
-                
-                <!-- Accordion Item 1 -->
-                <div class="accordion-item">
-                    <input type="checkbox" id="era-1" class="accordion-toggle" checked>
-                    <label for="era-1" class="accordion-header">
-                        <span>1814 – 1825: Early Frontier & Settlement</span>
-                        <span class="icon"></span>
-                    </label>
-                    <div class="accordion-content">
-                        <div class="split-grid">
-                            <div class="text-block">
-                                <p>Before the arrival of the Ohio & Erie Canal, early pioneers established initial clearings along the Tuscarawas River. These decentralized farming settlements relied heavily on rudimentary wagon trails for transporting regional timber and agricultural surpluses <span class="citation-badge">Ref #01</span>.</p>
-                            </div>
-                            <div class="image-placeholder">
-                                <span>Archival Document Plot</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+.cfhs-site-header {
+  background-color: var(--cfhs-white);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
 
-                <!-- Accordion Item 2 -->
-                <div class="accordion-item">
-                    <input type="checkbox" id="era-2" class="accordion-toggle">
-                    <label for="era-2" class="accordion-header">
-                        <span>1826 – 1913: The Golden Canal Era & Expansion</span>
-                        <span class="icon"></span>
-                    </label>
-                    <div class="accordion-content">
-                        <div class="split-grid">
-                            <div class="text-block">
-                                <p>The construction of Lock 4 transformed the community into a pivotal commerce node. The local dry docks quickly gained renown for building and servicing standard canal freight lines, cementing Canal Fulton as a bustling economic engine <span class="citation-badge">Ref #02</span>.</p>
-                            </div>
-                            <div class="image-placeholder">
-                                <span>St. Helena III Blueprint View</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+.cfhs-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  width: 100%;
+}
 
-            </div>
-        </section>
+/* Left Brand Mark Styling */
+.cfhs-brand-lockup {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 0.75rem;
+  z-index: 1010;
+}
 
-    </main>
+.cfhs-brand-seal {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
 
-    <footer class="main-footer">
-        <p>&copy; 2026 Canal Fulton Heritage Society. Built with community pride.</p>
-    </footer>
+.cfhs-brand-text {
+  display: flex;
+  flex-direction: column;
+}
 
-</body>
-</html>
+.cfhs-title-main {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cfhs-charcoal);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.cfhs-title-sub {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.15rem;
+}
+
+/* Mobile Layout Base Menu */
+.cfhs-nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--cfhs-white);
+  padding: 6rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  transform: translateX(-100%);
+  transition: var(--cfhs-transition);
+  overflow-y: auto;
+}
+
+.cfhs-nav-menu.is-active {
+  transform: translateX(0);
+}
+
+.cfhs-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.cfhs-nav-link {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--cfhs-charcoal);
+  text-decoration: none;
+  transition: var(--cfhs-transition);
+}
+
+.cfhs-nav-link:hover {
+  color: var(--cfhs-crimson);
+}
+
+.cfhs-nav-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+/* Button UI Components */
+.cfhs-btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: var(--cfhs-transition);
+  cursor: pointer;
+}
+
+.cfhs-btn-crimson {
+  background-color: var(--cfhs-crimson);
+  color: var(--cfhs-white);
+  border: 1px solid var(--cfhs-crimson);
+}
+
+.cfhs-btn-crimson:hover {
+  background-color: var(--cfhs-crimson-hover);
+  border-color: var(--cfhs-crimson-hover);
+}
+
+.cfhs-btn-outline {
+  background-color: transparent;
+  color: var(--cfhs-charcoal);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.cfhs-btn-outline:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-color: var(--cfhs-charcoal);
+}
+
+/* Hamburger Responsive Controller Trigger */
+.cfhs-mobile-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1010;
+}
+
+.cfhs-toggle-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--cfhs-charcoal);
+  transition: var(--cfhs-transition);
+  transform-origin: left center;
+}
+
+/* Mobile Hamburger Transform into Close Marker */
+.cfhs-mobile-toggle.is-open .cfhs-toggle-bar:nth-child(1) {
+  transform: rotate(45deg) translate(1px, -1px);
+}
+
+.cfhs-mobile-toggle.is-open .cfhs-toggle-bar:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.cfhs-mobile-toggle.is-open .cfhs-toggle-bar:nth-child(3) {
+  transform: rotate(-45deg) translate(1px, 1px);
+}
+
+/* =========================================================================
+   DESKTOP MEDIA QUERIES (Breakpoints matching the computer screen frames)
+   ========================================================================= */
+@media (min-width: 992px) {
+  .cfhs-mobile-toggle {
+    display: none;
+  }
+
+  .cfhs-nav-menu {
+    position: static;
+    height: auto;
+    width: auto;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    transform: none;
+    background-color: transparent;
+    overflow-y: visible;
+  }
+
+  .cfhs-nav-list {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .cfhs-nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #4a4a4a;
+  }
+
+  .cfhs-nav-actions {
+    flex-direction: row;
+    gap: 0.75rem;
+    margin-top: 0;
+  }
+
+  .cfhs-btn-action {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+</style>
+
+<script>
+// =========================================================================
+// INTERACTIVE RESPONSIVE NAVIGATION INTERFACE CONTROLLER
+// =========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.querySelector('.cfhs-mobile-toggle');
+  const navMenu = document.querySelector('.cfhs-nav-menu');
+
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.classList.toggle('is-open');
+      navMenu.classList.toggle('is-active');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile panel smoothly if a click falls out of container focus
+    document.addEventListener('click', (event) => {
+      if (!navMenu.contains(event.target) && !menuToggle.contains(event.target) && navMenu.classList.contains('is-active')) {
+        menuToggle.classList.remove('is-open');
+        navMenu.classList.remove('is-active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+});
+</script>
