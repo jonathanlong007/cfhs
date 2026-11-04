@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: your-username/canal-fulton-heritage # Replace with your repo link
+  branch: main
+
+media_folder: "images" # Where volunteer-uploaded photos will go
+public_folder: "/images"
+
+collections:
+  - name: "museums"
+    label: "Museum Logistics & Hours"
+    folder: "_data/museums"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Museum Name", name: "title", widget: "string" }
+      - { label: "Current Status Banner", name: "status", widget: "select", options: ["Open Daily", "Open Seasonal", "By Appointment", "Closed for Season"] }
+      - { label: "Operating Hours", name: "hours", widget: "string" }
+      - { label: "Historical Description", name: "description", widget: "text" }
