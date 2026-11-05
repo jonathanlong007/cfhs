@@ -1,132 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canal Fulton Heritage Society</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historical Timeline — Canal Fulton Heritage Society</title>
+  <style>
+    /* 🎨 Core Variables & Premium Heritage Palette */
+    :root {
+      --bg-cream: #fbf9f4;
+      --txt-charcoal: #22252a;
+      --accent-amber: #c59141;
+      --accent-amber-hover: #a87830;
+      --border-muted: #e6e1d5;
+      --font-serif: "Georgia", serif;
+      --font-sans: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* 🧱 Structural Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--txt-charcoal);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+      padding: 2rem 1rem;
+    }
+
+    /* 📐 Container Framework */
+    .timeline-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h1.page-title {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--txt-charcoal);
+      padding-bottom: 0.5rem;
+    }
+
+    /* 📂 Multi-Era Accordion Framework */
+    .era-accordion {
+      border: 1px solid var(--border-muted);
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* 👆 Touch-Friendly Tap Targets */
+    .era-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 1.25rem 1.5rem; /* Enforces safe target size */
+      background: #ffffff;
+      border: none;
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: var(--txt-charcoal);
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .era-trigger:hover {
+      background: var(--bg-cream);
+    }
+
+    .era-icon {
+      font-size: 0.9rem;
+      transition: transform 0.2s ease;
+    }
+
+    /* 🛡️ Progressive Disclosure Mechanism */
+    .era-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+    }
+
+    /* Target state for active/expanded sections using JS or checklist inputs */
+    .era-accordion.is-open .era-content {
+      max-height: 2000px; /* High safety cap for rich content height */
+      transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
+      border-top: 1px solid var(--border-muted);
+    }
+
+    .era-accordion.is-open .era-icon {
+      transform: rotate(180deg);
+    }
+
+    /* 🔀 Split-Grid Architecture (Desktop Only) */
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 1.5rem;
+    }
+
+    /* 📝 Scannable Text Configurations */
+    .narrative-block {
+      max-width: 65ch; /* Enforces crisp, 50-74 character lines */
+    }
+
+    .narrative-block p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    /* 🎯 Inline Citation Badges */
+    .citation-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-cream);
+      border: 1px solid var(--accent-amber);
+      color: var(--accent-amber-hover);
+      font-size: 0.75rem;
+      font-weight: bold;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-left: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* 🖼️ Contextual Visual Assets */
+    .artifact-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .artifact-frame img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 2px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .artifact-caption {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.75rem;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* 📱 Responsive Mobile Stack Transitions */
+    @media (min-width: 768px) {
+      .split-grid {
+        grid-template-columns: 3fr 2fr; /* Stacks image on right side */
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- STICKY HEADER & ACCESSIBLE NAVIGATION -->
-    <header class="main-header">
-        <div class="header-container">
-            <a href="#" class="logo">CF<span class="crimson-text">Heritage</span></a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#history">Explore History</a></li>
-                    <li><a href="#museums">Visit Museums</a></li>
-                    <li><a href="#involved">Get Involved</a></li>
-                </ul>
-            </nav>
+  <div class="timeline-container">
+    <h1 class="page-title">A Tale of Three Villages</h1>
+
+    <!-- Accordion Section Instance -->
+    <div class="era-accordion is-open">
+      <button class="era-trigger">
+        <span>The Canal Boom & Fulton (1825–1853)</span>
+        <span class="era-icon">▼</span>
+      </button>
+      
+      <div class="era-content">
+        <div class="split-grid">
+          <!-- Left-hand side narrative lane -->
+          <div class="narrative-block">
+            <p>
+              In 1825, the Ohio State Legislature passed an act that enabled the construction of our first interstate transportation system: the canals.<a href="#" class="citation-badge">10</a> Anticipating an immense economic surge, local innovators immediately drew up plans for the village of Fulton in 1826.<a href="#" class="citation-badge">11</a>
+            </p>
+            <p>
+              Fulton was laid out to run exactly parallel to this major man-made shipping channel. The gamble paid off gracefully. In August 1828, the inaugural canal boat, the <em>State of Ohio</em>, made its triumphant passage through town, introducing a robust era of inland trade and immigration.<a href="#" class="citation-badge">12</a>
+            </p>
+          </div>
+          
+          <!-- Right-hand side visual frame -->
+          <div class="artifact-frame">
+            <img src="https://cfheritage.org" alt="Historical Great Western Warehouse along the canal route">
+            <div class="artifact-caption">The Great Western Warehouse hosted bustling canal marketplaces, circa 1848.</div>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Preserving the Historic Canal Era</h1>
-            <p>Welcome to the home of the St. Helena III, historic lock preservation, and the deep roots of Canal Fulton, Ohio.</p>
-            <a href="#museums" class="btn-primary">Plan Your Visit</a>
-        </div>
-    </section>
+  </div>
 
-    <main class="content-wrapper">
-        
-        <!-- MUSEUM LOGISTICS HUB / INFORMATION CARD GRID -->
-        <section id="museums" class="section-container">
-            <h2 class="section-title">Museum Operating Hours & Locations</h2>
-            <div class="card-grid">
-                
-                <!-- Card 1 -->
-                <div class="hub-card">
-                    <div class="card-status-banner">Open Seasonal</div>
-                    <div class="card-body">
-                        <h3>Heritage House & Museum</h3>
-                        <p class="hours"><strong>Hours:</strong> Sat & Sun, 1:00 PM – 4:00 PM</p>
-                        <p class="description">Our central archives showcasing early canal artifacts, model boats, and community histories.</p>
-                        <a href="#" class="btn-secondary">View Details</a>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="hub-card">
-                    <div class="card-status-banner">By Appointment</div>
-                    <div class="card-body">
-                        <h3>Oberlin House Museum</h3>
-                        <p class="hours"><strong>Hours:</strong> Special Event Tours Only</p>
-                        <p class="description">Experience life in a historic 19th-century home restored meticulously to its founding era.</p>
-                        <a href="#" class="btn-secondary">View Details</a>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="hub-card">
-                    <div class="card-status-banner">Open Daily</div>
-                    <div class="card-body">
-                        <h3>Lock 4 & Dry Dock Parcels</h3>
-                        <p class="hours"><strong>Hours:</strong> Dawn to Dusk</p>
-                        <p class="description">Walk alongside an authentic, surviving piece of the historic Ohio & Erie Canal infrastructure.</p>
-                        <a href="#" class="btn-secondary">View Details</a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- HISTORICAL TIMELINE ACCORDION SYSTEM -->
-        <section id="history" class="section-container content-reader">
-            <h2 class="section-title">Dense Archives & Multi-Era Timeline</h2>
-            <p class="intro-text">Explore the sequential growth transitions from early Ohio frontier settlements to the boom of the canal era.</p>
-
-            <div class="accordion-group">
-                
-                <!-- Accordion Item 1 -->
-                <div class="accordion-item">
-                    <input type="checkbox" id="era-1" class="accordion-toggle" checked>
-                    <label for="era-1" class="accordion-header">
-                        <span>1814 – 1825: Early Frontier & Settlement</span>
-                        <span class="icon"></span>
-                    </label>
-                    <div class="accordion-content">
-                        <div class="split-grid">
-                            <div class="text-block">
-                                <p>Before the arrival of the Ohio & Erie Canal, early pioneers established initial clearings along the Tuscarawas River. These decentralized farming settlements relied heavily on rudimentary wagon trails for transporting regional timber and agricultural surpluses <span class="citation-badge">Ref #01</span>.</p>
-                            </div>
-                            <div class="image-placeholder">
-                                <span>Archival Document Plot</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Accordion Item 2 -->
-                <div class="accordion-item">
-                    <input type="checkbox" id="era-2" class="accordion-toggle">
-                    <label for="era-2" class="accordion-header">
-                        <span>1826 – 1913: The Golden Canal Era & Expansion</span>
-                        <span class="icon"></span>
-                    </label>
-                    <div class="accordion-content">
-                        <div class="split-grid">
-                            <div class="text-block">
-                                <p>The construction of Lock 4 transformed the community into a pivotal commerce node. The local dry docks quickly gained renown for building and servicing standard canal freight lines, cementing Canal Fulton as a bustling economic engine <span class="citation-badge">Ref #02</span>.</p>
-                            </div>
-                            <div class="image-placeholder">
-                                <span>St. Helena III Blueprint View</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="main-footer">
-        <p>&copy; 2026 Canal Fulton Heritage Society. Built with community pride.</p>
-    </footer>
-
+  <!-- Micro Interaction Layer JavaScript Hook -->
+  <script>
+    document.querySelectorAll('.era-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const parent = trigger.parentElement;
+        parent.classList.toggle('is-open');
+      });
+    });
+  </script>
 </body>
 </html>
