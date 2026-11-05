@@ -3,212 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Historical Timeline — Canal Fulton Heritage Society</title>
-  <style>
-    /* 🎨 Core Variables & Premium Heritage Palette */
-    :root {
-      --bg-cream: #fbf9f4;
-      --txt-charcoal: #22252a;
-      --accent-amber: #c59141;
-      --accent-amber-hover: #a87830;
-      --border-muted: #e6e1d5;
-      --font-serif: "Georgia", serif;
-      --font-sans: "Helvetica Neue", Arial, sans-serif;
-    }
-
-    /* 🧱 Structural Reset */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--bg-cream);
-      color: var(--txt-charcoal);
-      font-family: var(--font-sans);
-      line-height: 1.5;
-      padding: 2rem 1rem;
-    }
-
-    /* 📐 Container Framework */
-    .timeline-container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    h1.page-title {
-      font-family: var(--font-serif);
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      border-bottom: 2px solid var(--txt-charcoal);
-      padding-bottom: 0.5rem;
-    }
-
-    /* 📂 Multi-Era Accordion Framework */
-    .era-accordion {
-      border: 1px solid var(--border-muted);
-      margin-bottom: 1rem;
-      border-radius: 4px;
-      overflow: hidden;
-      background: #ffffff;
-    }
-
-    /* 👆 Touch-Friendly Tap Targets */
-    .era-trigger {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      padding: 1.25rem 1.5rem; /* Enforces safe target size */
-      background: #ffffff;
-      border: none;
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: bold;
-      color: var(--txt-charcoal);
-      text-align: left;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-
-    .era-trigger:hover {
-      background: var(--bg-cream);
-    }
-
-    .era-icon {
-      font-size: 0.9rem;
-      transition: transform 0.2s ease;
-    }
-
-    /* 🛡️ Progressive Disclosure Mechanism */
-    .era-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
-    }
-
-    /* Target state for active/expanded sections using JS or checklist inputs */
-    .era-accordion.is-open .era-content {
-      max-height: 2000px; /* High safety cap for rich content height */
-      transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
-      border-top: 1px solid var(--border-muted);
-    }
-
-    .era-accordion.is-open .era-icon {
-      transform: rotate(180deg);
-    }
-
-    /* 🔀 Split-Grid Architecture (Desktop Only) */
-    .split-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      padding: 1.5rem;
-    }
-
-    /* 📝 Scannable Text Configurations */
-    .narrative-block {
-      max-width: 65ch; /* Enforces crisp, 50-74 character lines */
-    }
-
-    .narrative-block p {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin-bottom: 1.25rem;
-    }
-
-    /* 🎯 Inline Citation Badges */
-    .citation-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--bg-cream);
-      border: 1px solid var(--accent-amber);
-      color: var(--accent-amber-hover);
-      font-size: 0.75rem;
-      font-weight: bold;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      margin-left: 4px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    /* 🖼️ Contextual Visual Assets */
-    .artifact-frame {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .artifact-frame img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 2px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .artifact-caption {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 0.75rem;
-      text-align: center;
-      font-style: italic;
-    }
-
-    /* 📱 Responsive Mobile Stack Transitions */
-    @media (min-width: 768px) {
-      .split-grid {
-        grid-template-columns: 3fr 2fr; /* Stacks image on right side */
-      }
-    }
-  </style>
+  <title>Canal Fulton Heritage Society — Digital Platform</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="timeline-container">
-    <h1 class="page-title">A Tale of Three Villages</h1>
+  <!-- ==========================================
+       🌐 TIER 1: GLOBAL GATEWAY & NAVIGATION
+       ========================================== -->
+  <header class="global-header">
+    <div class="container nav-wrapper">
+      <a href="#" class="brand-identity">
+        <svg viewBox="0 0 24 24"><path d="M4 21h16v-2H4v2zm2-4h3v-2H6v2zm5 0h3v-4h-3v4zM4 3v2h16V3H4zm10 10h4V7h-4v6z"/></svg>
+        <div class="brand-title">Canal Fulton<br><span class="brand-subtitle">Heritage Society</span></div>
+      </a>
+      <nav>
+        <ul class="global-nav">
+          <li><a href="#history-channel">History</a></li>
+          <li><a href="#museum-channel">Museums</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#" class="btn-donate">Donate</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Accordion Section Instance -->
-    <div class="era-accordion is-open">
-      <button class="era-trigger">
-        <span>The Canal Boom & Fulton (1825–1853)</span>
-        <span class="era-icon">▼</span>
-      </button>
-      
-      <div class="era-content">
-        <div class="split-grid">
-          <!-- Left-hand side narrative lane -->
-          <div class="narrative-block">
-            <p>
-              In 1825, the Ohio State Legislature passed an act that enabled the construction of our first interstate transportation system: the canals.<a href="#" class="citation-badge">10</a> Anticipating an immense economic surge, local innovators immediately drew up plans for the village of Fulton in 1826.<a href="#" class="citation-badge">11</a>
-            </p>
-            <p>
-              Fulton was laid out to run exactly parallel to this major man-made shipping channel. The gamble paid off gracefully. In August 1828, the inaugural canal boat, the <em>State of Ohio</em>, made its triumphant passage through town, introducing a robust era of inland trade and immigration.<a href="#" class="citation-badge">12</a>
-            </p>
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="hero-title">Connecting Our Community to Its Stories</h1>
+      <p class="hero-subtitle">Welcome to the Canal Fulton Heritage Society, where the raw data of history transitions directly into the living heritage of our families.</p>
+    </div>
+  </section>
+
+  <main class="container main-workspace">
+    
+    <!-- ==========================================
+         📂 TIER 2: CONTENT CHANNELS & GRIDS
+         ========================================== -->
+    <section id="museum-channel">
+      <h2 class="section-headline">Museum Operating Hours & Locations</h2>
+      <div class="museum-dashboard-grid">
+        
+        <div class="museum-card">
+          <div class="status-ribbon">Seasonal: Mar-Oct</div>
+          <div class="museum-card-body">
+            <h3 class="museum-card-title">Heritage House</h3>
+            <ul class="museum-logistics-list">
+              <li><strong>Address:</strong> 116 S Canal St</li>
+              <li><strong>Hours:</strong> Tue-Sat 10am-4pm | Sun 1-4pm</li>
+              <li><strong>Contact:</strong> (330) 854-4414</li>
+            </ul>
+            <a href="#" class="btn-card-action">View Details</a>
           </div>
-          
-          <!-- Right-hand side visual frame -->
-          <div class="artifact-frame">
-            <img src="https://cfheritage.org" alt="Historical Great Western Warehouse along the canal route">
-            <div class="artifact-caption">The Great Western Warehouse hosted bustling canal marketplaces, circa 1848.</div>
+        </div>
+
+        <div class="museum-card">
+          <div class="status-ribbon status-appointment">By Appointment Only</div>
+          <div class="museum-card-body">
+            <h3 class="museum-card-title">Oberlin House</h3>
+            <ul class="museum-logistics-list">
+              <li><strong>Address:</strong> 434 W Market St</li>
+              <li><strong>Guided Tours:</strong> Special events or custom group reservations</li>
+              <li><strong>Booking:</strong> (330) 854-4414</li>
+            </ul>
+            <a href="#" class="btn-card-action">View Details</a>
+          </div>
+        </div>
+
+        <div class="museum-card">
+          <div class="status-ribbon status-daily">Open Daily</div>
+          <div class="museum-card-body">
+            <h3 class="museum-card-title">Lock 4 & Dry Dock</h3>
+            <ul class="museum-logistics-list">
+              <li><strong>Address:</strong> Lock 4 Park</li>
+              <li><strong>Access:</strong> Ohio & Erie Towpath Trailhead</li>
+              <li><strong>Pathways:</strong> Outdoor park open dawn to dusk</li>
+            </ul>
+            <a href="#" class="btn-card-action">View Details</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="history-channel">
+      <h2 class="section-headline">A Tale of Three Villages</h2>
+      
+      <div class="era-accordion">
+        <button class="era-trigger">
+          <span>Milan: The Pioneer Era (pre-1825)</span>
+          <span class="era-icon">▼</span>
+        </button>
+        <div class="era-content">
+          <div class="split-grid">
+            <div class="narrative-block">
+              <p>The pioneering spirits who resettled our portion of this river valley preferred the western bank of the Tuscarawas River. It was shortly thereafter, in the year 1814, that the village of Milan was established.</p>
+            </div>
+            <div class="artifact-frame">
+              <div class="artifact-placeholder">[Map Image: 1814 Plat of Milan]</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
+      <div class="era-accordion is-open">
+        <button class="era-trigger">
+          <span>The Canal Boom & Fulton (1825–1853)</span>
+          <span class="era-icon">▼</span>
+        </button>
+        <div class="era-content">
+          <div class="split-grid">
+            <div class="narrative-block">
+              <p>
+                In 1825, the State Legislature enabled the construction of our first interstate transportation web: the canals. Soon after, in 1826, the village of Fulton was drawn up exactly parallel to this new channel.
+              </p>
+              <p>
+                Once the St. Helena II canal boat operations got underway, the Heritage Society would continue its local historical coverage, officially adopting "The Canawler" newsletter format.<button class="citation-trigger" aria-haspopup="dialog" aria-controls="citation-modal" data-note="4">4</button>
+              </p>
+            </div>
+            <div class="artifact-frame">
+              <div class="artifact-placeholder dark-placeholder">ST. HELENA II ARCHIVE</div>
+              <div class="artifact-caption">The St. Helena II navigating Lock 4 canal pathways, circa 1971.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ==========================================
+       🔍 TIER 3: INTERACTION LAYER OVERLAY
+       ========================================== -->
+  <div class="citation-overlay" id="citation-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="citation-card">
+      <button class="citation-close" id="close-btn" aria-label="Close footnote details">&times;</button>
+      <div id="citation-content"></div>
+    </div>
   </div>
 
-  <!-- Micro Interaction Layer JavaScript Hook -->
   <script>
+    /* 📄 Archival Bibliography Citation Record Store Mapping */
+    const citationDatabase = {
+      "4": {
+        title: "Note 4: The Canawler Newsletter, 1971",
+        meta: "Vol. 4, No. 1 — Heritage Society Official Serial Archive",
+        desc: "This specific edition documented the complete legal and mechanical transfer of the St. Helena II canal boat, alongside volunteer restoration blueprints for structural repairs executed at McLaughlin Dry Dock.",
+        imgSrc: "https://cfheritage.org/1stcanawler.jpg"
+      }
+    };
+
+    /* 🔌 Interactivity Hook Routine: Tier 2 Accordion Expansion Engines */
     document.querySelectorAll('.era-trigger').forEach(trigger => {
       trigger.addEventListener('click', () => {
-        const parent = trigger.parentElement;
-        parent.classList.toggle('is-open');
+        trigger.parentElement.classList.toggle('is-open');
       });
     });
+
+    /* 🔌 Interactivity Hook Routine: Tier 3 Pop-up Data Injector Modals */
+    const overlay = document.getElementById('citation-modal');
+    const contentBox = document.getElementById('citation-content');
+    const closeBtn = document.getElementById('close-btn');
+
+    document.querySelectorAll('.citation-trigger').forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevents cascading event bubble routines
+        const noteId = trigger.getAttribute('data-note');
+        const data = citationDatabase[noteId];
+
+        if (data) {
+          contentBox.innerHTML = `
+            <div class="citation-header">${data.title}</div>
+            <div class="citation-meta">${data.meta}</div>
+            <div class="citation-body-grid">
+              <div class="citation-text">${data.desc}</div>
+              <div class="citation-thumb-wrap">
+                <div class="citation-thumb-placeholder">NEWS CLIP</div>
+              </div>
+            </div>
+          `;
+          overlay.classList.add('is-active');
+          overlay.setAttribute('aria-hidden', 'false');
+          closeBtn.focus();
+        }
+      });
+    });
+
+    const dismissModal = () => {
+      overlay.classList.remove('is-active');
+      overlay.setAttribute('aria-hidden', 'true');
+    };
+
+    closeBtn.addEventListener('click', dismissModal);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) dismissModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismissModal(); });
   </script>
 </body>
 </html>
