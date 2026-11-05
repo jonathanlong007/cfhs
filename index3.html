@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canal Fulton Heritage Society</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-crimson: #801418;
+      --color-crimson-hover: #5c0e11;
+      --color-cream: #f6f4ee;
+      --color-white: #ffffff;
+      --color-text-dark: #1e2229;
+      --color-text-muted: #535965;
+      --font-primary: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --max-width: 1100px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-primary);
+      background-color: var(--color-cream);
+      color: var(--color-text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a, button {
+      transition: var(--transition);
+    }
+
+    .site-header {
+      background-color: var(--color-white);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: auto;
+      display: block;
+    }
+
+    .brand-text-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      letter-spacing: -0.01em;
+      margin-top: 0.1rem;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--color-text-dark);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-link:hover {
+      color: var(--color-crimson);
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.5rem;
+    }
+
+    .mobile-menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--color-text-dark);
+      border-radius: 2px;
+    }
+
+    .hero-main {
+      max-width: var(--max-width);
+      margin: 2.5rem auto 4rem auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .hero-artwork-frame {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 2.5rem;
+      background-color: #e5dec9;
+      aspect-ratio: 16 / 9;
+      max-height: 520px;
+    }
+
+    .hero-artwork {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-content-block {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .hero-headline {
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: var(--color-text-dark);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .action-button-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .action-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 0.75rem 1.75rem;
+      border-radius: 50px;
+      min-width: 160px;
+      background-color: var(--color-crimson);
+      color: var(--color-white);
+      box-shadow: 0 4px 12px rgba(128, 20, 24, 0.15);
+    }
+
+    .action-trigger:hover {
+      background-color: var(--color-crimson-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(128, 20, 24, 0.25);
+    }
+
+    @media (max-width: 860px) {
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-white);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.25rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        border-top: 1px solid rgba(0, 0, 0, 0.02);
+      }
+
+      .nav-menu.is-open {
+        display: flex;
+      }
+
+      .hero-headline {
+        font-size: 2rem;
+      }
+
+      .action-button-grid {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      .action-trigger {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#" class="brand-lockup">
+        <svg class="brand-icon" viewBox="0 0 100 40" fill="currentColor">
+          <path d="M5 25 L15 12 L75 12 L85 20 L95 20 L92 32 L8 32 Z" fill="#1e2229"/>
+          <rect x="25" y="16" width="45" height="10" fill="#1e2229"/>
+          <rect x="30" y="20" width="4" height="6" fill="#ffffff"/>
+          <rect x="38" y="20" width="4" height="6" fill="#ffffff"/>
+          <rect x="46" y="20" width="4" height="6" fill="#ffffff"/>
+          <rect x="54" y="20" width="4" height="6" fill="#ffffff"/>
+          <rect x="62" y="20" width="4" height="6" fill="#ffffff"/>
+          <circle cx="81" cy="24" r="2" fill="#ffffff"/>
+        </svg>
+        <div class="brand-text-wrapper">
+          <h1 class="brand-title">Canal Fulton</h1>
+          <span class="brand-subtitle">Heritage Society</span>
+        </div>
+      </a>
+
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#" class="nav-link">Explore History</a></li>
+        <li><a href="#" class="nav-link">Visit Museums</a></li>
+        <li><a href="#" class="nav-link">Events</a></li>
+        <li><a href="#" class="nav-link">Get Involved</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="hero-main">
+    <div class="hero-artwork-frame">
+      <img src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=1200&q=80" alt="Historic Brick Building" class="hero-artwork">
+    </div>
+
+    <div class="hero-content-block">
+      <h2 class="hero-headline">Connecting Our Community<br>to Its Stories</h2>
+      <p class="hero-description">
+        Welcome to the Canal Fulton Heritage Society, where local history comes to life. Explore our rich past, vibrant culture, and unique canal era legacy through engaging exhibits, educational programs, and community events.
+      </p>
+
+      <div class="action-button-grid">
+        <a href="#" class="action-trigger">Donate Now</a>
+        <a href="#" class="action-trigger">Volunteer</a>
+        <a href="#" class="action-trigger">Become a Member</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('menuToggle');
+      const navMenu = document.getElementById('navMenu');
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', (e) => {
+          e.stopPropagation();
+          navMenu.classList.toggle('is-open');
+        });
+        document.addEventListener('click', (e) => {
+          if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            navMenu.classList.remove('is-open');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
