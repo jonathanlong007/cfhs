@@ -7,8 +7,8 @@
   <style>
     /* --- Modernized CSS Variables & Color Tokens --- */
     :root {
-      --primary-crimson: #9a1c1c;
-      --primary-crimson-hover: #7a1414;
+      --primary-crimson: #b32025;
+      --primary-crimson-hover: #8c161a;
       --bg-cream: #fdfbf7;
       --bg-white: #ffffff;
       --text-charcoal: #2d2d2d;
@@ -17,10 +17,10 @@
       --accent-gold: #c5a059;
       --max-text-width: 65ch;
       --font-serif: "Georgia", "Times New Roman", serif;
-      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* --- Base Resets & Typography --- */
+    /* --- Base Resets --- */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -36,19 +36,19 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* --- Header & Layout Containers --- */
+    /* --- Sticky Header --- */
     header {
       background-color: var(--bg-white);
       border-bottom: 2px solid var(--primary-crimson);
-      padding: 1.5rem 2rem;
+      padding: 1rem 2rem;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     }
 
     .header-container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -62,19 +62,19 @@
     }
 
     .logo-group img {
-      height: 50px;
+      height: 45px;
       width: auto;
     }
 
     .logo-text h1 {
       font-family: var(--font-serif);
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       color: var(--primary-crimson);
       font-weight: 700;
     }
 
     .logo-text p {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -89,7 +89,7 @@
       text-decoration: none;
       border-radius: 4px;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: background-color 0.2s ease;
     }
 
@@ -97,152 +97,170 @@
       background-color: var(--primary-crimson-hover);
     }
 
-    main {
-      max-width: 1100px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
-    }
-
-    /* --- Title Hero Section --- */
-    .hero-section {
-      text-align: center;
-      margin-bottom: 3.5rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 2rem;
-    }
-
-    .hero-section h2 {
-      font-family: var(--font-serif);
-      font-size: 2.75rem;
-      color: var(--text-charcoal);
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-section p {
-      font-style: italic;
-      color: var(--text-muted);
-      font-size: 1.25rem;
-    }
-
-    /* --- Interactive Chronological Accordions --- */
-    .era-accordion {
-      background-color: var(--bg-white);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      margin-bottom: 1.5rem;
+    /* --- CSS-Only Hero Slider Frame --- */
+    .hero-carousel-container {
+      position: relative;
+      width: 100%;
+      height: 550px;
+      background-color: #1a1a1a;
       overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .era-accordion:hover {
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-    }
-
-    .era-accordion summary {
-      list-style: none;
-      padding: 1.5rem;
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary-crimson);
-      cursor: pointer;
+    .slider-wrapper {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: none;
-      outline: none;
-      background-color: var(--bg-white);
+      width: 600%; /* 6 Slides */
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    .era-accordion summary::-webkit-details-marker {
+    .slide {
+      width: 16.6666%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(55%) sepia(15%);
+    }
+
+    /* Descriptive Overlays */
+    .slide-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 4rem 2rem 5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      color: var(--bg-white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide-overlay h2 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .slide-overlay p {
+      font-size: 1.15rem;
+      max-width: var(--max-text-width);
+      color: #e8e2d9;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    /* Pure CSS Control Infrastructure */
+    input[name="slider-control"] {
       display: none;
     }
 
-    .era-accordion summary::after {
-      content: "+";
-      font-family: var(--font-sans);
-      font-size: 1.75rem;
-      line-height: 1;
-      color: var(--accent-gold);
-      transition: transform 0.3s ease;
+    /* State Bindings for Transitions */
+    #slide1:checked ~ .slider-wrapper { transform: translateX(0%); }
+    #slide2:checked ~ .slider-wrapper { transform: translateX(-16.6666%); }
+    #slide3:checked ~ .slider-wrapper { transform: translateX(-33.3333%); }
+    #slide4:checked ~ .slider-wrapper { transform: translateX(-50%); }
+    #slide5:checked ~ .slider-wrapper { transform: translateX(-66.6666%); }
+    #slide6:checked ~ .slider-wrapper { transform: translateX(-83.3333%); }
+
+    /* Interactive Pagination Dots */
+    .slider-nav {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 0.75rem;
+      z-index: 10;
     }
 
-    .era-accordion[open] summary {
+    .slider-nav label {
+      width: 12px;
+      height: 12px;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .slider-nav label:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+      transform: scale(1.2);
+    }
+
+    #slide1:checked ~ .slider-nav label[for="slide1"],
+    #slide2:checked ~ .slider-nav label[for="slide2"],
+    #slide3:checked ~ .slider-nav label[for="slide3"],
+    #slide4:checked ~ .slider-nav label[for="slide4"],
+    #slide5:checked ~ .slider-nav label[for="slide5"],
+    #slide6:checked ~ .slider-nav label[for="slide6"] {
+      background-color: var(--primary-crimson);
+      box-shadow: 0 0 0 2px var(--bg-white);
+    }
+
+    /* --- Narrative Core Workspace --- */
+    main {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .intro-block {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .intro-block h3 {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-block p {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+    }
+
+    /* Chronological Text Layout */
+    .history-section {
+      background-color: var(--bg-white);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    }
+
+    .history-section h4 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      color: var(--primary-crimson);
+      margin-bottom: 1.25rem;
       border-bottom: 1px solid var(--border-color);
-      background-color: rgba(253, 251, 247, 0.5);
+      padding-bottom: 0.5rem;
     }
 
-    .era-accordion[open] summary::after {
-      content: "−";
-    }
-
-    .era-content {
-      padding: 2rem;
-    }
-
-    /* --- Split-Grid Content Scanning & Multi-Era Layouts --- */
-    .split-grid {
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 2.5rem;
-      align-items: start;
-    }
-
-    .narrative-text {
-      max-width: var(--max-text-width);
-    }
-
-    .narrative-text p {
+    .history-section p {
       margin-bottom: 1.5rem;
       text-align: justify;
     }
 
-    .narrative-text p:last-child {
+    .history-section p:last-child {
       margin-bottom: 0;
     }
 
-    /* --- High-Quality Media Panels & Sticky Sidebars --- */
-    .media-sidebar {
-      position: sticky;
-      top: 120px;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .archive-card {
-      background-color: var(--bg-cream);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      padding: 1rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
-    }
-
-    .archive-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 2px;
-      filter: sepia(10%) contrast(102%);
-      margin-bottom: 0.75rem;
-    }
-
-    .archive-card figcaption {
-      font-size: 0.85rem;
-      line-height: 1.4;
-      color: var(--text-muted);
-      border-left: 2px solid var(--accent-gold);
-      padding-left: 0.5rem;
-    }
-
-    /* --- Scholarly Citation Design & Footnote System --- */
+    /* Scholarly Citation Badges */
     .citation-badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background-color: rgba(154, 28, 28, 0.08);
+      background-color: rgba(179, 32, 37, 0.08);
       color: var(--primary-crimson);
       font-size: 0.75rem;
       font-weight: 700;
@@ -260,51 +278,7 @@
       color: var(--bg-white);
     }
 
-    .footnote-marker {
-      display: inline-block;
-      color: var(--accent-gold);
-      font-weight: 700;
-      margin-left: 0.2rem;
-      vertical-align: super;
-      cursor: help;
-    }
-
-    /* --- Footnotes & Web Page Notes Panel --- */
-    .notes-section {
-      margin-top: 5rem;
-      background-color: var(--bg-white);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 2.5rem;
-    }
-
-    .notes-section h3 {
-      font-family: var(--font-serif);
-      font-size: 1.75rem;
-      color: var(--primary-crimson);
-      margin-bottom: 1.5rem;
-      border-bottom: 2px solid var(--border-color);
-      padding-bottom: 0.5rem;
-    }
-
-    .notes-list {
-      list-style: none;
-    }
-
-    .notes-list li {
-      font-size: 0.95rem;
-      color: var(--text-charcoal);
-      margin-bottom: 1.25rem;
-      padding-left: 2rem;
-      text-indent: -2rem;
-      line-height: 1.5;
-    }
-
-    .notes-list li strong {
-      color: var(--primary-crimson);
-    }
-
-    /* --- Footer Context Section --- */
+    /* --- Footer System --- */
     footer {
       background-color: var(--text-charcoal);
       color: #e8e2d9;
@@ -314,29 +288,18 @@
     }
 
     .footer-container {
-      max-width: 1100px;
+      max-width: 900px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 3rem;
     }
 
-    .footer-about h4 {
+    .footer-about h5, .footer-contact h5 {
       font-family: var(--font-serif);
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: var(--bg-white);
       margin-bottom: 1rem;
-    }
-
-    .footer-contact h4 {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      color: var(--bg-white);
-      margin-bottom: 1rem;
-    }
-
-    .footer-contact p {
-      margin-bottom: 0.5rem;
     }
 
     .footer-contact a {
@@ -348,43 +311,22 @@
       text-decoration: underline;
     }
 
-    /* --- Responsive Architecture Layout (Mobile Optimization) --- */
-    @media (max-width: 900px) {
-      .split-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      
-      .media-sidebar {
-        position: static;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
+    /* --- Responsive Architecture Layout --- */
+    @media (max-width: 768px) {
+      .hero-carousel-container {
+        height: 400px;
       }
 
-      .hero-section h2 {
-        font-size: 2.25rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 1rem;
-      }
-      
-      .header-container {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
+      .slide-overlay h2 {
+        font-size: 1.8rem;
       }
 
-      .era-content {
-        padding: 1.25rem;
+      .slide-overlay p {
+        font-size: 1rem;
       }
 
-      .era-accordion summary {
-        font-size: 1.25rem;
-        padding: 1.25rem;
+      .history-section {
+        padding: 1.5rem;
       }
 
       .footer-container {
@@ -410,23 +352,40 @@
     </div>
   </header>
 
-  <!-- Main Narrative Workspace -->
-  <main>
-    <div class="hero-section">
-      <h2>A Tale of Three Cities</h2>
-      <p>(Well, "Villages" anyway)</p>
-    </div>
+  <!-- Interactive Hero Carousel Panel -->
+  <div class="hero-carousel-container">
+    <input type="radio" id="slide1" name="slider-control" checked>
+    <input type="radio" id="slide2" name="slider-control">
+    <input type="radio" id="slide3" name="slider-control">
+    <input type="radio" id="slide4" name="slider-control">
+    <input type="radio" id="slide5" name="slider-control">
+    <input type="radio" id="slide6" name="slider-control">
 
-    <!-- ERA 1: Early Canal Fulton -->
-    <details class="era-accordion" open>
-      <summary>1. Early Canal Fulton</summary>
-      <div class="era-content">
-        <div class="split-grid">
-          <div class="narrative-text">
-          </div>
+    <div class="slider-wrapper">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="https://cfheritage.org" alt="Muskingum Watershed Map">
+        <div class="slide-overlay">
+          <h2>Early Canal Systems</h2>
+          <p>The system of natural waterways that formed essential transportation routes for early settlements.</p>
         </div>
       </div>
-    </details>
-  </main>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="https://cfheritage.org" alt="Miller Fruit Farm">
+        <div class="slide-overlay">
+          <h2>The Miller Fruit Farm</h2>
+          <p>Overlooking Arcadia Street, representing the sustainable legacy of agricultural vocations in Milan.</p>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="https://cfheritage.org" alt="Great Western Warehouse">
+        <div class="slide-overlay">
+          <h2>The Great Western Warehouse</h2>
+        </div>
+      </div>>
+    </div>
+  </div>
 </body>
 </html>
