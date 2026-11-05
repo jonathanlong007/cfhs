@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canal Fulton Heritage Society — Digital Platform Workspace</title>
+  <style>
+    /* ==========================================================================
+       🎨 CORE DESIGN SYSTEM & BRANDING CONFIGURATION (CANAL FULTON CRIMSON)
+       ========================================================================== */
+    :root {
+      --bg-cream: #fbf9f4;
+      --txt-charcoal: #22252a;
+      --town-red: #b32025;         /* Official Canal Fulton Crimson Red */
+      --town-red-hover: #8c161a;   /* WCAG Compliant Darker Hover Variant */
+      --border-muted: #e6e1d5;
+      --font-serif: "Georgia", serif;
+      --font-sans: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* 🧱 Structural Resets */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--txt-charcoal);
+      font-family: var(--font-sans);
+      line-height: 1.5;
+    }
+
+    /* Universal Utility Structural Layouts */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================================
+       🌐 TIER 1: GLOBAL GATEWAY & NAVIGATION LAYER (HOMEPAGE PLATFORM)
+       ========================================================================== */
+    .global-header {
+      background-color: #ffffff;
+      border-bottom: 1px solid var(--border-muted);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--txt-charcoal);
+    }
+
+    .brand-identity svg {
+      fill: var(--town-red);
+      width: 32px;
+      height: 32px;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    /* Responsive Main Menu Structure */
+    .global-nav {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .global-nav a {
+      text-decoration: none;
+      color: var(--txt-charcoal);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .global-nav a:hover {
+      color: var(--town-red);
+    }
+
+    .btn-donate {
+      background-color: var(--town-red);
+      color: #ffffff !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .btn-donate:hover {
+      background-color: var(--town-red-hover);
+    }
+
+    /* Main Gateway Hero Component */
+    .hero-section {
+      background-color: #ffffff;
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border-muted);
+      text-align: center;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 2.75rem;
+      color: var(--txt-charcoal);
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: #555;
+      max-width: 60ch;
+      margin: 0 auto 2rem auto;
+    }
+
+    /* ==========================================================================
+       📂 TIER 2: CONTENT CHANNELS & GRIDS (HISTORY TIMELINE & SITES DASHBOARD)
+       ========================================================================== */
+    .main-workspace {
+      padding: 3rem 0;
+    }
+
+    .section-headline {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--txt-charcoal);
+      padding-bottom: 0.5rem;
+    }
+
+    /* 📦 Component: Museum Logistics Card Grid Row */
+    .museum-dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .museum-card {
+      background: #ffffff;
+      border: 1px solid var(--border-muted);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .status-ribbon {
+      background-color: var(--town-red);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .museum-card-body {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .museum-card-title {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .museum-logistics-list {
+      list-style: none;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .museum-logistics-list li {
+      margin-bottom: 0.5rem;
+    }
+
+    .museum-logistics-list strong {
+      color: #555;
+    }
+
+    .btn-card-action {
+      display: block;
+      text-align: center;
+      padding: 0.6rem;
+      border: 1px solid var(--town-red);
+      color: var(--town-red);
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      margin-top: auto;
+      transition: all 0.2s ease;
+    }
+
+    .btn-card-action:hover {
+      background-color: var(--town-red);
+      color: #ffffff;
+    }
+
+    /* 📂 Component: Progressive Disclosure Timeline Accordions */
+    .era-accordion {
+      border: 1px solid var(--border-muted);
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    .era-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 1.25rem 1.5rem; /* Touch targets friendly minimum 48px height */
+      background: #ffffff;
+      border: none;
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: var(--txt-charcoal);
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .era-trigger:hover {
+      background: var(--bg-cream);
+      color: var(--town-red);
+    }
+
+    .era-icon {
+      font-size: 0.9rem;
+      transition: transform 0.2s ease;
+    }
+
+    .era-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+    }
+
+    /* Active open configuration rules */
+    .era-accordion.is-open {
+      border-left: 4px solid var(--town-red);
+    }
+
+    .era-accordion.is-open .era-content {
+      max-height: 2000px;
+      transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+      border-top: 1px solid var(--border-muted);
+    }
+
+    .era-accordion.is-open .era-icon {
+      transform: rotate(180deg);
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 1.5rem;
+    }
+
+    .narrative-block {
+      max-width: 65ch; /* Keeps layout tracking locked to 50-74 characters per line width */
+    }
+
+    .narrative-block p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .artifact-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .artifact-frame img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 2px;
+    }
+
+    .artifact-caption {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.75rem;
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       🔍 TIER 3: INTERACTION LAYER (INLINE POPUP CITATION WINDOWS)
+       ========================================================================== */
+    .citation-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      border: 1px solid var(--town-red);
+      color: var(--town-red);
+      font-size: 0.75rem;
+      font-weight: bold;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-left: 4px;
+      cursor: pointer;
+      vertical-align: super;
+      transition: all 0.2s ease;
+    }
+
+    .citation-trigger:hover,
+    .citation-trigger:focus {
+      background-color: var(--town-red);
+      color: #ffffff;
+      outline: none;
+    }
+
+    /* Global Full Screen Dark Overlay */
+    .citation-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(34, 37, 42, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .citation-overlay.is-active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .citation-card {
+      background-color: #ffffff;
+      border-radius: 6px;
+      border-top: 5px solid var(--town-red);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 500px;
+      padding: 2rem;
+      position: relative;
+      transform: translateY(-20px);
+      transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .citation-overlay.is-active .citation-card {
+      transform: translateY(0);
+    }
+
+    .citation-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #999;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .citation-header {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--txt-charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .citation-body-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .citation-text {
+      font-size: 0.95rem;
+      color: #4a4f56;
+      line-height: 1.5;
+    }
+
+    .citation-thumbnail {
+max-width: 100px;
+height: auto;
+border: 1px solid var(--border-muted);
+}
+/* ==========================================================================
+📱 RESPONSIVE MEDIA BREAKPOINTS (ADAPTIVE INTERFACE FRAMEWORK)
+========================================================================== /
+@media (min-width: 768px) {
+.museum-dashboard-grid {
+grid-template-columns: repeat(3, 1fr); / 3-Column horizontal rows for desktop cards */
+}
+.split-grid {
+grid-template-columns: 3fr 2fr; /* Places archival imagery adjacent to historical descriptions */
+}
+.citation-body-grid {
+grid-template-columns: 1fr auto;
+}
+}
+    
+<div>
+
+Canal Fulton
+Heritage Society
+
+
+
+History
+Museums
+Events
+Donate
+
+
+
+Connecting Our Community to Its Stories
+Welcome to the Canal Fulton Heritage Society, where the raw data of history transitions directly into the living heritage of our families.
+
+Museum Operating Hours & Locations
+Seasonal: Mar-Oct
+
+Heritage House
+
+Address: 116 S Canal St
+Hours: Tue-Sat 10am-4pm | Sun 1-4pm
+Contact: (330) 854-4414
+
+View Details
+
+By Appointment Only
+
+Oberlin House
+
+Address: 434 W Market St
+Guided Tours: Special events or custom group reservations
+Booking: (330) 854-4414
+
+View Details
+
+Open Daily
+
+Lock 4 & Dry Dock
+
+Address: Lock 4 Park
+Access: Ohio & Erie Towpath Trailhead
+Pathways: Outdoor park open dawn to dusk
+
+View Details
+
+A Tale of Three Villages
+Milan: The Pioneer Era (pre-1825)
+▼
+
+
+
+
+The pioneering spirits who resettled our portion of this river valley preferred the western bank bank of the Tuscarawas River. It was shortly thereafter, in the year 1814, that the village of Milan was established.
+
+
+[Map Image: 1814 Plat of Milan]
+
+    </div>
+    
+/* 📄 Archival Bibliography Citation Record Store Mapping */
+const citationDatabase = {
+"4": {
+title: "Note 4: The Canawler Newsletter, 1971",
+meta: "Vol. 4, No. 1 — Heritage Society Official Serial Archive",
+desc: "This specific edition documented the complete legal and mechanical transfer of the St. Helena II canal boat, alongside volunteer restoration blueprints for structural repairs executed at McLaughlin Dry Dock.",
+imgSrc: "cfheritage.org"
+}
+};
+/* 🔌 Interactivity Hook Routine: Tier 2 Accordion Expansion Engines */
+document.querySelectorAll('.era-trigger').forEach(trigger => {
+trigger.addEventListener('click', () => {
+trigger.parentElement.classList.toggle('is-open');
+});
+});
+/* 🔌 Interactivity Hook Routine: Tier 3 Pop-up Data Injector Modals */
+const overlay = document.getElementById('citation-modal');
+const contentBox = document.getElementById('citation-content');
+const closeBtn = document.getElementById('close-btn');
+document.querySelectorAll('.citation-trigger').forEach(trigger => {
+trigger.addEventListener('click', (e) => {
+e.stopPropagation(); // Prevents cascading event bubble routines
+const noteId = trigger.getAttribute('data-note');
+const data = citationDatabase[noteId];
+if (data) {
+contentBox.innerHTML = <div class="citation-header">${data.title}</div> <div style="font-size: 0.85rem; color: var(--town-red); font-weight: bold; margin-bottom: 0.75rem;">${data.meta}</div> <div class="citation-body-grid"> <div class="citation-text">${data.desc}</div> <div style="text-align: center;"> <div style="width: 80px; height: 100px; background: #e6e1d5; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #666; font-weight: bold; border: 1px solid #ccc;">NEWS CLIP</div> </div> </div>;
+overlay.classList.add('is-active');
+overlay.setAttribute('aria-hidden', 'false');
+closeBtn.focus();
+}
+});
+});
+const dismissModal = () => {
+overlay.classList.remove('is-active');
+overlay.setAttribute('aria-hidden', 'true');
+};
+closeBtn.addEventListener('click', dismissModal);
+overlay.addEventListener('click', (e) => { if (e.target === overlay) dismissModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') dismissModal(); });
+</HTML>
+                                          
