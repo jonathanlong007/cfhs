@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Tale of Three Cities | Canal Fulton Heritage Society</title>
+    <!-- Modernized responsive stylesheet implementing a clean crimson-and-gold aesthetic, collapsible multi-era historical accordions, split-grid layout, and an interactive slide-up citation drawer. -->
+    <style>
+        :root {
+            --primary-crimson: #8b1e24;
+            --primary-crimson-hover: #6b1419;
+            --accent-gold: #d4af37;
+            --bg-light: #fdfdfb;
+            --bg-card: #ffffff;
+            --text-dark: #2b2b2b;
+            --text-muted: #595959;
+            --border-color: #e5e0d8;
+            --max-text-width: 60ch;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; padding-bottom: 60px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://cfheritage.org') center/cover no-repeat; color: white; text-align: center; padding: 80px 20px; margin-bottom: 40px; border-bottom: 4px solid var(--primary-crimson); }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; font-family: Georgia, serif; }
+        .hero p { font-size: 1.2rem; color: var(--accent-gold); max-width: var(--max-text-width); margin: 0 auto; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .dash-card { background: var(--bg-card); border-left: 4px solid var(--primary-crimson); padding: 20px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .dash-card h3 { color: var(--primary-crimson); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .dash-card p { font-size: 1.1rem; font-weight: bold; }
+        .era-accordion { margin-bottom: 20px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); overflow: hidden; }
+        .era-trigger { width: 100%; background: none; border: none; padding: 20px; text-align: left; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 1.3rem; font-weight: bold; color: var(--primary-crimson); transition: background 0.2s; }
+        .era-trigger:hover { background-color: #f9f7f3; }
+        .era-icon { font-size: 1.5rem; transition: transform 0.3s; }
+        .era-content { display: none; padding: 25px; border-top: 1px solid var(--border-color); background-color: #fff; }
+        .era-accordion.active .era-content { display: block; }
+        .era-accordion.active .era-icon { transform: rotate(45deg); }
+        .split-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
+        @media (min-width: 768px) { .split-grid { grid-template-columns: 1.2fr 1fr; } }
+        .text-column { max-width: var(--max-text-width); }
+        .text-column p { margin-bottom: 15px; font-size: 1.05rem; color: var(--text-dark); }
+        .media-column { display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+        .media-card { background: var(--bg-light); border: 1px solid var(--border-color); border-radius: 4px; padding: 10px; text-align: center; }
+        .media-card img { max-width: 100%; height: auto; border-radius: 2px; display: block; margin: 0 auto 10px; }
+        .media-caption { font-size: 0.85rem; color: var(--text-muted); font-style: italic; line-height: 1.3; }
+        .cite-badge { display: inline-flex; align-items: center; justify-content: center; background-color: #f0e6df; color: var(--primary-crimson); font-size: 0.75rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; margin-left: 3px; cursor: pointer; vertical-align: super; transition: background 0.2s, color 0.2s; border: none; }
+        .cite-badge:hover { background-color: var(--primary-crimson); color: white; }
+        .reference-drawer { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; border-top: 3px solid var(--primary-crimson); box-shadow: 0 -4px 20px rgba(0,0,0,0.15); max-height: 35vh; overflow-y: auto; transform: translateY(100%); transition: transform 0.3s ease-in-out; z-index: 1000; padding: 20px; }
+        .reference-drawer.open { transform: translateY(0); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        .drawer-header h4 { color: var(--primary-crimson); font-size: 1.1rem; }
+        .close-drawer { background: var(--primary-crimson); color: white; border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .note-item { display: none; font-size: 0.95rem; color: var(--text-dark); line-height: 1.4; }
+        .note-item.highlight { display: block; }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="container">
+            <h1>A Tale of Three Cities</h1>
+            <p>The Evolution of Milan, Fulton, and West Fulton into a Historic Canal Town</p>
+        </div>
+    </header>
+    <main class="container">
+        <section class="dashboard-grid" aria-label="Historical Landmarks Dashboard">
+            <div class="dash-card"><h3>1814</h3><p>Village of Milan Founded</p></div>
+            <div class="dash-card"><h3>1826</h3><p>Village of Fulton Founded</p></div>
+            <div class="dash-card"><h3>1832</h3><p>Hamlet of West Fulton Founded</p></div>
+            <div class="dash-card"><h3>1853</h3><p>Three Villages Merge Into One</p></div>
+        </section>
+
+        <!-- Era 1: Early Canal Fulton -->
+        <article class="era-accordion active">
+            <button class="era-trigger" onclick="toggleEra(this)"><span>1. Early Canal Fulton (1800 - 1825)</span><span class="era-icon">+</span></button>
+            <div class="era-content">
+                <div class="split-grid">
+                    <div class="text-column">
+                        <p>Early settlers in the valley included Native Americans drawn by the Tuscarawas River watershed <button class="cite-badge" onclick="showNote(1)">1</button> <button class="cite-badge" onclick="showNote(2)">2</button> <button class="cite-badge" onclick="showNote(3)">3</button> <button class="cite-badge" onclick="showNote(4)">4</button>. Following the Battle of Fallen Timbers and Treaty of Fort Industry <button class="cite-badge" onclick="showNote(5)">5</button>, the U.S. surveyed the area in 1800 and 1807 <button class="cite-badge" onclick="showNote(6)">6</button>. Pioneers favored the affordable, fertile western bank <button class="cite-badge" onclick="showNote(7)">7</button>, leading to the founding of the <strong>village of Milan</strong> in 1814 <button class="cite-badge" onclick="showNote(8)">8</button>.</p>
+                    </div>
+                    <div class="media-column">
+                        <div class="media-card">
+                            <img src="https://cfheritage.org" alt="Map of the Muskingum Watershed Area">
+                            <div class="media-caption">The Muskingum Watershed drainage pathways connected early settlements to broader continental trade networks.</div>
+                        </div>
+                        <div class="media-card">
+                            <img src="https://cfheritage.org" alt="Historical Miller Fruit Farm Hillside">
+                            <div class="media-caption">The Miller Fruit Farm sat at the top of the hill along Arcadia Street.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Era 2: The Canal and Coal Boom -->
+        <article class="era-accordion">
+            <button class="era-trigger" onclick="toggleEra(this)"><span>2. The Canal and Coal Boom (1825 - 1900)</span><span class="era-icon">+</span></button>
+            <div class="era-content">
+                <div class="split-grid">
+                    <div class="text-column">
+                        <p>Inspired by the Erie Canal, Ohio enacted internal improvements <button class="cite-badge" onclick="showNote(9)">9</button> <button class="cite-badge" onclick="showNote(10)">10</button>. The <strong>village of Fulton</strong> was laid out in 1826 along the eastern bank <button class="cite-badge" onclick="showNote(11)">11</button>, welcoming its first canal boat by 1828 <button class="cite-badge" onclick="showNote(12)">12</button>. Growth continued with the 1832 founding of <strong>West Fulton</strong> <button class="cite-badge" onclick="showNote(14)">14</button>, culminating in the 1853 merger of all three villages into a single port <button class="cite-badge" onclick="showNote(15)">15</button> <button class="cite-badge" onclick="showNote(18)">18</button>. As railroads challenged canals <button class="cite-badge" onclick="showNote(21)">21</button>, the town transitioned to regional coal mining with over 20 active mines by the 1880s <button class="cite-badge" onclick="showNote(22)">22</button> <button class="cite-badge" onclick="showNote(23)">23</button>.</p>
+                    </div>
+                    <div class="media-column">
+                        <div class="media-card">
+                            <img src="https://cfheritage.org" alt="Great Western Warehouse structure">
+                            <div class="media-caption">The Great Western Warehouse housed pharmacies, markets, and an upper-floor opera house.</div>
+                        </div>
+                        <div class="media-card">
