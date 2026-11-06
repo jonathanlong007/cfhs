@@ -38,7 +38,265 @@
   </section>
 
   <main class="container main-workspace">
+    <!-- =========================================================================
+     CANAL FULTON HERITAGE SOCIETY - RESPONSIVE IMAGE CAROUSEL
+     Highly optimized, clean JavaScript slider for the main homepage banner.
+     ========================================================================= -->
+
+<div class="cfhs-carousel-viewport" aria-roledescription="carousel" aria-label="Historical properties and exhibits gallery">
+  
+  <!-- The moving filmstrip track container -->
+  <div class="cfhs-carousel-track" id="carouselTrack">
     
+    <!-- Slide 1: The Heritage House Museum -->
+    <div class="cfhs-carousel-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+      <img src="st-helena-canal-boat.png" alt="Historical Illustration of the St. Helena Canal Boat along the Ohio and Erie Canalway" class="cfhs-carousel-img">
+      <div class="cfhs-carousel-caption">
+        <h3 class="cfhs-caption-title">The St. Helena Canal Boat</h3>
+        <p class="cfhs-caption-text">Experience live horse-drawn history trips down the original canal path.</p>
+      </div>
+    </div>
+
+    <!-- Slide 2: The Heritage House Museum -->
+    <div class="cfhs-carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+      <img src="http://cfheritage.org" alt="The brick exterior of the Heritage House and Old Canal Days Museum" class="cfhs-carousel-img">
+      <div class="cfhs-carousel-caption">
+        <h3 class="cfhs-caption-title">Heritage House Museum</h3>
+        <p class="cfhs-caption-text">Explore our collection of authentic artifacts and canal era memorabilia downtown.</p>
+      </div>
+    </div>
+
+    <!-- Slide 3: The Oberlin House -->
+    <div class="cfhs-carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+      <!-- High-fidelity fallback placeholder for the historic Oberlin House property visual -->
+      <img src="https://unsplash.com" alt="Historic early pioneer homestead preservation site" class="cfhs-carousel-img">
+      <div class="cfhs-carousel-caption">
+        <h3 class="cfhs-caption-title">The Oberlin House Museum</h3>
+        <p class="cfhs-caption-text">Touring pioneer life settings through timed seasonal festival events.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Accessibility Interactive Navigation Elements -->
+  <button class="cfhs-carousel-btn cfhs-prev-btn" id="prevBtn" aria-label="Previous slide">&#10094;</button>
+  <button class="cfhs-carousel-btn cfhs-next-btn" id="nextBtn" aria-label="Next slide">&#10095;</button>
+
+  <!-- Symmetrical Dot Navigation Track -->
+  <div class="cfhs-carousel-dots" id="dotsContainer">
+    <button class="cfhs-dot is-active" aria-label="Go to slide 1" aria-current="true"></button>
+    <button class="cfhs-dot" aria-label="Go to slide 2"></button>
+    <button class="cfhs-dot" aria-label="Go to slide 3"></button>
+  </div>
+</div>
+
+<style>
+/* =========================================================================
+   CAROUSEL UI STYLING SHEET
+   ========================================================================= */
+
+.cfhs-carousel-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 2.5rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  aspect-ratio: 16 / 9;
+  max-height: 520px;
+  background-color: #e5dec9;
+}
+
+.cfhs-carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.cfhs-carousel-slide {
+  position: relative;
+  min-width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.cfhs-carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Semi-transparent text protection banner overlay gradient */
+.cfhs-carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  color: #ffffff;
+  padding: 3rem 2rem 2rem 2rem;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.cfhs-caption-title {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
+}
+
+.cfhs-caption-text {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.9;
+  max-width: 600px;
+}
+
+/* Interactive Directional Control Elements */
+.cfhs-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.85);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: #2a2a2a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.cfhs-carousel-btn:hover {
+  background-color: #ffffff;
+  color: #801418; /* CFHS Deep Crimson */
+  scale: 1.05;
+}
+
+.cfhs-prev-btn { left: 1rem; }
+.cfhs-next-btn { right: 1rem; }
+
+/* Positional Visual Markers Tracking Indicator Dots */
+.cfhs-carousel-dots {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.cfhs-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.cfhs-dot.is-active {
+  background-color: #ffffff;
+  width: 20px;
+  border-radius: 4px;
+}
+
+/* Collapse overlay content fields gracefully on small mobile cards */
+@media (max-width: 600px) {
+  .cfhs-carousel-btn { display: none; }
+  .cfhs-carousel-caption { padding: 1.5rem 1rem 1rem 1rem; }
+  .cfhs-caption-title { font-size: 1.15rem; }
+  .cfhs-caption-text { font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .cfhs-carousel-dots { right: 50%; transform: translateX(50%); bottom: 0.75rem; }
+}
+</style>
+
+<script>
+// =========================================================================
+// INTERACTIVE ENGINE CONTROLLER FOR FILMSTRIP VIEWPORT RUNTIME
+// =========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('carouselTrack');
+  const slides = Array.from(track.children);
+  const nextBtn = document.getElementById('nextBtn');
+  const prevBtn = document.getElementById('prevBtn');
+  const dotsContainer = document.getElementById('dotsContainer');
+  const dots = Array.from(dotsContainer.children);
+  
+  let currentIndex = 0;
+  let timer = null;
+  const intervalDuration = 5000; // Auto scroll window step interval duration 5s
+
+  function updateCarousel(index) {
+    // Constraint boundaries calculation check loop parameters
+    if (index >= slides.length) currentIndex = 0;
+    else if (index < 0) currentIndex = slides.length - 1;
+    else currentIndex = index;
+
+    // Shift the track layout row position matrix using transform
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    // Reassign active layout classes systematically
+    dots.forEach((dot, idx) => {
+      const isActive = idx === currentIndex;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+  }
+
+  function startAutoCycle() {
+    stopAutoCycle();
+    timer = setInterval(() => {
+      updateCarousel(currentIndex + 1);
+    }, intervalDuration);
+  }
+
+  function stopAutoCycle() {
+    if (timer) clearInterval(timer);
+  }
+
+  // Bind Event Triggers
+  nextBtn.addEventListener('click', () => {
+    updateCarousel(currentIndex + 1);
+    startAutoCycle(); // Reset countdown timeline on user click interaction
+  });
+
+  prevBtn.addEventListener('click', () => {
+    updateCarousel(currentIndex - 1);
+    startAutoCycle();
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      updateCarousel(index);
+      startAutoCycle();
+    });
+  });
+
+  // Suspend runtime timeline progression if visitor cursor hovers grid frame focus area
+  track.addEventListener('mouseenter', stopAutoCycle);
+  track.addEventListener('mouseleave', startAutoCycle);
+
+  // Initialize Runtime Engine State Loop Execution
+  startAutoCycle();
+});
+</script>
+
     <!-- ==========================================
          📂 TIER 2: CONTENT CHANNELS & GRIDS
          ========================================== -->
