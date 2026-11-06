@@ -1,0 +1,387 @@
+<!-- =========================================================================
+     CANAL FULTON HERITAGE SOCIETY - MODERN MEMBERSHIP & VOLUNTEER FORM
+     Fully styled form integrating Formspree for serverless GitHub Pages mailing.
+     ========================================================================= -->
+
+<div class="cfhs-form-wrapper">
+  <div class="cfhs-form-header">
+    <h2 class="cfhs-form-heading">Personal Membership Application</h2>
+    <p class="cfhs-form-subheading">“Moving Forward to the Past…”</p>
+    <div class="cfhs-form-perks">
+      <strong>Member Benefits Include:</strong>
+      <ul>
+        <li>10% discount on purchases from our Museum Gift Shop</li>
+        <li>Schedule free Oberlin House and Museum Tours for your group or family</li>
+        <li>Advance notice of coming events</li>
+        <li>Eligible for Gladys Burgert-Mitchell Scholarship</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- REPLACE "your_formspree_endpoint" WITH YOUR ACTUAL FORMSPREE KEY -->
+  <form action="https://formspree.io" method="POST" class="cfhs-membership-form">
+    
+    <!-- SECTION 1: MEMBERSHIP LEVELS -->
+    <fieldset class="cfhs-form-section">
+      <legend class="cfhs-section-title">1. Select Membership Level</legend>
+      <div class="cfhs-radio-grid">
+        <label class="cfhs-radio-card">
+          <input type="radio" name="membership_level" value="Lifetime - $1000" required>
+          <span class="cfhs-level-name">Lifetime</span>
+          <span class="cfhs-level-price">$1,000</span>
+        </label>
+        <label class="cfhs-radio-card">
+          <input type="radio" name="membership_level" value="Contributing - $100">
+          <span class="cfhs-level-name">Contributing</span>
+          <span class="cfhs-level-price">$100</span>
+        </label>
+        <label class="cfhs-radio-card">
+          <input type="radio" name="membership_level" value="Sustaining - $50">
+          <span class="cfhs-level-name">Sustaining</span>
+          <span class="cfhs-level-price">$50</span>
+        </label>
+        <label class="cfhs-radio-card">
+          <input type="radio" name="membership_level" value="Family - $25">
+          <span class="cfhs-level-name">Family</span>
+          <span class="cfhs-level-price">$25</span>
+        </label>
+        <label class="cfhs-radio-card">
+          <input type="radio" name="membership_level" value="Senior Couple - $15">
+          <span class="cfhs-level-name">Senior Couple</span>
+          <span class="cfhs-level-price">$15</span>
+        </label>
+        <label class="cfhs-radio-card">
+          <input type="radio" name="membership_level" value="Individual - $15">
+          <span class="cfhs-level-name">Individual</span>
+          <span class="cfhs-level-price">$15</span>
+        </label>
+        <label class="cfhs-radio-card">
+          <input type="radio" name="membership_level" value="Single Senior - $10">
+          <span class="cfhs-level-name">Single Senior</span>
+          <span class="cfhs-level-price">$10</span>
+        </label>
+        <label class="cfhs-radio-card">
+          <input type="radio" name="membership_level" value="Student - $10">
+          <span class="cfhs-level-name">Student</span>
+          <span class="cfhs-level-price">$10</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 2: PERSONAL DETAILS -->
+    <fieldset class="cfhs-form-section">
+      <legend class="cfhs-section-title">2. Contact Information</legend>
+      <div class="cfhs-input-grid">
+        <div class="cfhs-input-group cfhs-col-full">
+          <label for="cfhs-name">Full Name(s)</label>
+          <input type="text" id="cfhs-name" name="name" placeholder="John and Jane Doe" required>
+        </div>
+        <div class="cfhs-input-group cfhs-col-full">
+          <label for="cfhs-address">Street Address</label>
+          <input type="text" id="cfhs-address" name="address" placeholder="123 Main St" required>
+        </div>
+        <div class="cfhs-input-group">
+          <label for="cfhs-city">City</label>
+          <input type="text" id="cfhs-city" name="city" placeholder="Canal Fulton" required>
+        </div>
+        <div class="cfhs-input-group cfhs-col-short">
+          <label for="cfhs-state">State</label>
+          <input type="text" id="cfhs-state" name="state" placeholder="OH" maxlength="2" required>
+        </div>
+        <div class="cfhs-input-group cfhs-col-medium">
+          <label for="cfhs-zip">Zip Code</label>
+          <input type="text" id="cfhs-zip" name="zip" placeholder="44614" required>
+        </div>
+        <div class="cfhs-input-group">
+          <label for="cfhs-phone">Phone Number</label>
+          <input type="tel" id="cfhs-phone" name="phone" placeholder="(330) 854-3808">
+        </div>
+        <div class="cfhs-input-group">
+          <label for="cfhs-email">Email Address</label>
+          <input type="email" id="cfhs-email" name="email" placeholder="name@example.com" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- SECTION 3: VOLUNTEER & INVENTORY DONATIONS -->
+    <fieldset class="cfhs-form-section">
+      <legend class="cfhs-section-title">3. Get Involved & Volunteer Support</legend>
+      <p class="cfhs-section-desc">The Heritage Society depends on the generosity of supporters. Would you be willing to help in any of these areas?</p>
+      
+      <div class="cfhs-checkbox-grid">
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Give Museum Tours"> Give Museum Tours
+        </label>
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Give Oberlin House Tours"> Give Oberlin House Tours
+        </label>
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Help Run Gift Shop Sales"> Help Run Gift Shop Sales
+        </label>
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Help During Special Events"> Help During Special Events
+        </label>
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Clean Flowerbeds & Properties"> Clean Flowerbeds & Properties
+        </label>
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Maintain Buildings"> Maintain Buildings
+        </label>
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Become a Trustee"> Become a Trustee
+        </label>
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Research/Write Grants"> Research/Write Grants
+        </label>
+        <label class="cfhs-checkbox-label">
+          <input type="checkbox" name="volunteer_interests[]" value="Help Marketing/Advertising"> Help Marketing/Advertising
+        </label>
+      </div>
+
+      <div class="cfhs-input-group cfhs-col-full" style="margin-top: 1.25rem;">
+        <label for="cfhs-other-help">Other ways you can help:</label>
+        <input type="text" id="cfhs-other-help" name="other_help" placeholder="Describe your talents or ideas...">
+      </div>
+
+      <div class="cfhs-input-group cfhs-col-full" style="margin-top: 1.25rem;">
+        <label for="cfhs-artifacts">Do you have old pictures, documents, letters, or historic clothing of Canal Fulton to donate?</label>
+        <textarea id="cfhs-artifacts" name="artifact_donations" rows="2" placeholder="List items collecting dust in the attic that you would like to preserve..."></textarea>
+      </div>
+    </fieldset>
+
+    <!-- SUBMIT BUTTON BUTTON -->
+    <div class="cfhs-form-footer">
+      <p class="cfhs-tax-notice">Once submitted, you will receive confirmation details regarding your application. The Canal Fulton Heritage Society is a 501(c)(3) organization. Your contributions are tax-deductible.</p>
+      <button type="submit" class="cfhs-submit-btn">Submit Application</button>
+    </div>
+
+  </form>
+</div>
+
+<style>
+/* =========================================================================
+   MODERN FORM CSS STYLING
+   ========================================================================= */
+.cfhs-form-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: #1e2229;
+}
+
+.cfhs-form-header {
+  background-color: #801418; /* CFHS Crimson */
+  color: #ffffff;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.cfhs-form-heading {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.cfhs-form-subheading {
+  font-size: 1rem;
+  font-style: italic;
+  opacity: 0.85;
+  margin-bottom: 1.5rem;
+}
+
+.cfhs-form-perks {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1.25rem;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.cfhs-form-perks strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.cfhs-form-perks ul {
+  font-size: 0.88rem;
+  padding-left: 1.2rem;
+  line-height: 1.5;
+}
+
+.cfhs-membership-form {
+  padding: 2.5rem 2rem;
+}
+
+.cfhs-form-section {
+  border: none;
+  margin-bottom: 2.5rem;
+  padding: 0;
+}
+
+.cfhs-section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-bottom: 2px solid #f6f4ee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.25rem;
+  width: 100%;
+}
+
+.cfhs-section-desc {
+  font-size: 0.9rem;
+  color: #535965;
+  margin-bottom: 1rem;
+}
+
+/* Membership Level Cards UI */
+.cfhs-radio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+.cfhs-radio-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+justify-content: center;
+padding: 1rem;
+border: 2px solid #f6f4ee;
+border-radius: 8px;
+cursor: pointer;
+transition: all 0.2s ease;
+text-align: center;
+}
+.cfhs-radio-card input[type="radio"] {
+position: absolute;
+opacity: 0;
+width: 0;
+height: 0;
+}
+.cfhs-level-name {
+font-size: 0.9rem;
+font-weight: 600;
+color: #535965;
+margin-bottom: 0.25rem;
+}
+.cfhs-level-price {
+font-size: 1.2rem;
+font-weight: 800;
+color: #1e2229;
+}
+.cfhs-radio-card:hover {
+border-color: rgba(128, 20, 24, 0.3);
+background-color: #fbfbf9;
+}
+.cfhs-radio-card:has(input:checked) {
+border-color: #801418;
+background-color: rgba(128, 20, 24, 0.03);
+}
+.cfhs-radio-card:has(input:checked) .cfhs-level-name,
+.cfhs-radio-card:has(input:checked) .cfhs-level-price {
+color: #801418;
+}
+/* Form Fields Input Grid Layout */
+.cfhs-input-grid {
+display: grid;
+grid-template-columns: repeat(12, 1fr);
+gap: 1.25rem 1rem;
+}
+.cfhs-input-group {
+display: flex;
+flex-direction: column;
+grid-column: span 6;
+}
+.cfhs-col-full { grid-column: span 12; }
+.cfhs-col-medium { grid-column: span 4; }
+.cfhs-col-short { grid-column: span 2; }
+.cfhs-input-group label {
+font-size: 0.88rem;
+font-weight: 700;
+margin-bottom: 0.4rem;
+color: #1e2229;
+}
+.cfhs-input-group input,
+.cfhs-input-group textarea {
+padding: 0.65rem 0.85rem;
+border: 1px solid #d1d5db;
+border-radius: 6px;
+font-size: 0.95rem;
+font-family: inherit;
+transition: border-color 0.2s ease;
+}
+.cfhs-input-group input:focus,
+.cfhs-input-group textarea:focus {
+outline: none;
+border-color: #801418;
+box-shadow: 0 0 0 3px rgba(128, 20, 24, 0.1);
+}
+/* Volunteer Checkbox Grid */
+.cfhs-checkbox-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+gap: 0.85rem;
+}
+.cfhs-checkbox-label {
+display: flex;
+align-items: flex-start;
+gap: 0.5rem;
+font-size: 0.9rem;
+font-weight: 500;
+cursor: pointer;
+}
+.cfhs-checkbox-label input[type="checkbox"] {
+margin-top: 0.25rem;
+accent-color: #801418;
+}
+/* Form Submission Segment */
+.cfhs-form-footer {
+border-top: 2px solid #f6f4ee;
+padding-top: 1.5rem;
+margin-top: 1.5rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 1.25rem;
+}
+.cfhs-tax-notice {
+font-size: 0.82rem;
+color: #535965;
+text-align: center;
+line-height: 1.5;
+}
+.cfhs-submit-btn {
+background-color: #801418;
+color: #ffffff;
+border: none;
+padding: 0.85rem 2.5rem;
+font-size: 1rem;
+font-weight: 700;
+border-radius: 50px;
+cursor: pointer;
+box-shadow: 0 4px 12px rgba(128, 20, 24, 0.15);
+width: 100%;
+max-width: 280px;
+}
+.cfhs-submit-btn:hover {
+background-color: #5c0e11;
+transform: translateY(-1px);
+box-shadow: 0 6px 16px rgba(128, 20, 24, 0.25);
+}
+/* Mobile Responsiveness adjustments */
+@media (max-width: 680px) {
+.cfhs-membership-form { padding: 1.5rem 1rem; }
+.cfhs-input-group { grid-column: span 12; }
+.cfhs-col-medium, .cfhs-col-short { grid-column: span 12; }
+.cfhs-radio-grid { grid-template-columns: repeat(2, 1fr); }
+}
