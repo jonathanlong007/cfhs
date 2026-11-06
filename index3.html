@@ -279,7 +279,226 @@
 
   <main class="hero-main">
     <div class="hero-artwork-frame">
-      <img src="https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=1200&q=80" alt="Historic Brick Building" class="hero-artwork">
+        <!-- =========================================================================
+     CFHS SELF-CONTAINED IMAGE CAROUSEL COMPONENT
+     Copy and paste this entire block directly into your index.html file.
+     ========================================================================= -->
+<div class="cfhs-inline-carousel" aria-roledescription="carousel" aria-label="Historical gallery">
+  
+  <!-- Filmstrip Slide Track Wrapper -->
+  <div class="cfhs-slide-track" id="cfhsTrack">
+    
+    <!-- Slide 1: Canal Boat -->
+    <div class="cfhs-individual-slide" role="group" aria-roledescription="slide" aria-label="1 of 3">
+      <img src="cfhs_heritagehouse.png" alt="Historical Illustration of the St. Helena Canal Boat" class="cfhs-slide-image">
+      <div class="cfhs-slide-overlay">
+        <h3 class="cfhs-slide-title">The St. Helena Canal Boat</h3>
+        <p class="cfhs-slide-desc">Experience live horse-drawn history trips down the original canal path.</p>
+      </div>
+    </div>
+
+    <!-- Slide 2: Heritage House Museum -->
+    <div class="cfhs-individual-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+      <img src="cfhs_heritagehouse.jpg" alt="Heritage House Museum exterior" class="cfhs-slide-image">
+      <div class="cfhs-slide-overlay">
+        <h3 class="cfhs-slide-title">Heritage House Museum</h3>
+        <p class="cfhs-slide-desc">Explore our collection of authentic artifacts and canal era memorabilia downtown.</p>
+      </div>
+    </div>
+
+    <!-- Slide 3: Pioneer Homestead -->
+    <div class="cfhs-individual-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+      <img src="cfhs_seal.png" alt="Historic homestead preservation site" class="cfhs-slide-image">
+      <div class="cfhs-slide-overlay">
+        <h3 class="cfhs-slide-title">The Oberlin House Museum</h3>
+        <p class="cfhs-slide-desc">Touring pioneer life settings through timed seasonal festival events.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Arrow Control Interfaces -->
+  <button class="cfhs-arrow-ctrl cfhs-arrow-left" id="cfhsPrev" aria-label="Previous slide">&#10094;</button>
+  <button class="cfhs-arrow-ctrl cfhs-arrow-right" id="cfhsNext" aria-label="Next slide">&#10095;</button>
+
+  <!-- Navigation Dots Track -->
+  <div class="cfhs-indicator-dots" id="cfhsDots">
+    <button class="cfhs-indicator-dot cfhs-dot-active" aria-label="Go to slide 1" aria-current="true"></button>
+    <button class="cfhs-indicator-dot" aria-label="Go to slide 2"></button>
+    <button class="cfhs-indicator-dot" aria-label="Go to slide 3"></button>
+  </div>
+</div>
+
+<style>
+/* Scoped Styles to Prevent Interferences with Existing Layout CSS */
+.cfhs-inline-carousel {
+  position: relative;
+  width: 90%;
+  max-width: 1100px;
+  margin: 10 auto 2.5rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+  aspect-ratio: 16 / 9;
+  max-height: 320px;
+  background-color: #e5dec9;
+  box-sizing: border-box;
+}
+.cfhs-inline-carousel * {
+  box-sizing: border-box;
+}
+.cfhs-slide-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.cfhs-individual-slide {
+  position: relative;
+  min-width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+.cfhs-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cfhs-slide-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  color: #ffffff;
+  padding: 3rem 2rem 2rem 2rem;
+  text-align: left;
+}
+.cfhs-slide-title {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 0.4rem 0;
+  color: #ffffff;
+}
+.cfhs-slide-desc {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+  color: #ffffff;
+}
+.cfhs-arrow-ctrl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.85);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: #2a2a2a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+.cfhs-arrow-ctrl:hover {
+  background-color: #ffffff;
+  color: #801418;
+  scale: 1.05;
+}
+.cfhs-arrow-left { left: 1rem; }
+.cfhs-arrow-right { right: 1rem; }
+.cfhs-indicator-dots {
+  position: absolute;
+  bottom: 1.25rem;
+  right: 2rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+.cfhs-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+.cfhs-indicator-dot.cfhs-dot-active {
+  background-color: #ffffff;
+  width: 20px;
+  border-radius: 4px;
+}
+@media (max-width: 600px) {
+  .cfhs-arrow-ctrl { display: none; }
+  .cfhs-slide-overlay { padding: 1.5rem 1rem 1rem 1rem; }
+  .cfhs-slide-title { font-size: 1.15rem; }
+  .cfhs-slide-desc { font-size: 0.85rem; }
+  .cfhs-indicator-dots { right: 50%; transform: translateX(50%); bottom: 0.75rem; }
+}
+</style>
+
+<script>
+(function() {
+  // Encapsulated inside an IIFE to prevent variable conflicts with your other code
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('cfhsTrack');
+    const slides = Array.from(track.children);
+    const nextBtn = document.getElementById('cfhsNext');
+    const prevBtn = document.getElementById('cfhsPrev');
+    const dotsContainer = document.getElementById('cfhsDots');
+    const dots = Array.from(dotsContainer.children);
+    
+    let currentIndex = 0;
+    let timer = null;
+    const duration = 5000;
+
+    function move(index) {
+      if (index >= slides.length) currentIndex = 0;
+      else if (index < 0) currentIndex = slides.length - 1;
+      else currentIndex = index;
+
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      dots.forEach((dot, idx) => {
+        const active = idx === currentIndex;
+        dot.classList.toggle('cfhs-dot-active', active);
+        dot.setAttribute('aria-current', active ? 'true' : 'false');
+      });
+    }
+
+    function start() { stop(); timer = setInterval(() => { move(currentIndex + 1); }, duration); }
+    function stop() { if (timer) clearInterval(timer); }
+
+    nextBtn.addEventListener('click', () => { move(currentIndex + 1); start(); });
+    prevBtn.addEventListener('click', () => { move(currentIndex - 1); start(); });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => { move(index); start(); });
+    });
+
+    track.addEventListener('mouseenter', stop);
+    track.addEventListener('mouseleave', start);
+
+    start();
+  });
+})();
+</script>
+<!-- =========================================================================
+     END OF CAROUSEL BLOCK
+     ========================================================================= -->
+
+
     </div>
 
     <div class="hero-content-block">
