@@ -1,0 +1,93 @@
+/* Core Layout Structure */
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Top Navbar styling */
+.top-navbar {
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.top-navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1.5rem;
+    font-weight: bold;
+}
+
+/* Master Split View Layout */
+.split-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Left Sidebar for Major Topics */
+.left-topics {
+    width: 40%;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+}
+
+.topic-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.topic-item:hover, .topic-item.active {
+    background-color: #eaeaea;
+}
+
+/* Right Side Image Carousel Container */
+.right-carousel {
+    width: 60%;
+    position: relative;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carousel-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Carousel Control Arrows */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 10;
+}
+
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
