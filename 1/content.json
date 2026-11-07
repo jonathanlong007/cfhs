@@ -2,27 +2,40 @@
   "navigation": [
     { "name": "Home", "link": "#home" },
     { "name": "Exhibits", "link": "#exhibits" },
-    { "name": "Archives", "link": "#archives" },
     { "name": "About Us", "link": "#about" }
   ],
   "topics": [
     {
       "id": "exhibits",
       "title": "Current Exhibits",
-      "description": "Explore our interactive historical timelines and physical galleries.",
-      "images": [
-        "https://picsum.photos",
-        "https://picsum.photos",
-        "https://picsum.photos"
+      "points": [
+        {
+          "pointId": "exhibits-intro",
+          "navLabel": "1. Overview",
+          "heading": "Introduction to the Exhibition",
+          "text": "This opening section outlines our complete core collection. Over the past decade, volunteers have meticulously archived these physical layout spaces, ensuring that fragile documents are preserved for future generations. Visitors will find that our digital footprint bridges the gap between historical field logs and interactive educational modules.",
+          "images": ["https://picsum.photos", "https://picsum.photos"]
+        },
+        {
+          "pointId": "exhibits-timeline",
+          "navLabel": "2. Timeline",
+          "heading": "Historical Timeline Evolution",
+          "text": "Delve into centuries of documented growth and structural transformations. This point highlights crucial turning points across regional milestones. The data files collected here represent hundreds of hours of raw historical transcription, serving as a clean visual companion to our secondary gallery halls.",
+          "images": ["https://picsum.photos", "https://picsum.photos"]
+        }
       ]
     },
     {
       "id": "archives",
       "title": "Digital Archives",
-      "description": "Browse local historical documents, audio logs, and records.",
-      "images": [
-        "https://picsum.photos",
-        "https://picsum.photos"
+      "points": [
+        {
+          "pointId": "archives-records",
+          "navLabel": "1. Records",
+          "heading": "Public Registry Records",
+          "text": "A comprehensive compilation of community logs, ledger books, and primary source documents. These structural text files provide an unaltered glimpse into daily logistical operations from past eras. Novice researchers can navigate this segment to parse foundational family trees and municipal maps.",
+          "images": ["https://picsum.photos"]
+        }
       ]
     }
   ]
