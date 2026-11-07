@@ -1,0 +1,29 @@
+{
+  "navigation": [
+    { "name": "Home", "link": "#home" },
+    { "name": "Exhibits", "link": "#exhibits" },
+    { "name": "Archives", "link": "#archives" },
+    { "name": "About Us", "link": "#about" }
+  ],
+  "topics": [
+    {
+      "id": "exhibits",
+      "title": "Current Exhibits",
+      "description": "Explore our interactive historical timelines and physical galleries.",
+      "images": [
+        "https://picsum.photos",
+        "https://picsum.photos",
+        "https://picsum.photos"
+      ]
+    },
+    {
+      "id": "archives",
+      "title": "Digital Archives",
+      "description": "Browse local historical documents, audio logs, and records.",
+      "images": [
+        "https://picsum.photos",
+        "https://picsum.photos"
+      ]
+    }
+  ]
+}
