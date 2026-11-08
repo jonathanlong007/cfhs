@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Content Manager Dashboard</title>
     
-    <!-- 1. External Styling definitions (keeps HTML structure readable) -->
     <style>
         body {
             margin: 0;
@@ -47,60 +46,73 @@
 
     
     </script>
+
+    <!-- 2. Set Decap to manual initialization mode to stop it from breaking our layout -->
+    <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
 
-    <!-- Visual Dashboard Entry State Wrapper -->
-    <div id="nc-root">
+    <!-- Fallback Login Display Container -->
+    <div id="login-container">
         <div class="login-wrap">
             <div class="login-box">
                 <h1 style="color: #333; margin: 0 0 10px 0;">Dashboard Entry</h1>
                 <p style="color: #666; margin: 0 0 25px 0;">Access the visual static content editor panel.</p>
                 
-                <!-- Fixed Explicit Event Listener Trigger -->
-                <button class="login-btn" id="manual-login-trigger">
+                <button class="login-btn" id="login-btn-trigger">
                     Log In with Netlify Identity
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- 3. Explicit Connection Bridge Logic -->
     <script>
-        // ⚠️ DEFINE YOUR TARGET NETLIFY INSTANCE HERE
-        // Replace this string with your exact site name from your Netlify control board!
+        // ⚠️ CHANGE THIS to match your exact Netlify site URL!
         const NETLIFY_URL = "https://fascinating-moonbeam-cb13ec.netlify.app";
 
-        // Safe Fallback Initialization Function
-        function initializeIdentityBridge() {
-            if (window.netlifyIdentity) {
-                console.log("Netlify Identity script detected. Linking instance...");
+        document.addEventListener("DOMContentLoaded", () => {
+            if (!window.netlifyIdentity) {
+                alert("Identity script failed to load. Please verify your internet connection or check for browser ad-blockers blocking Netlify CDN.");
+                return;
+            }
+
+            // Bind the widget cleanly to your external Netlify domain
+            window.netlifyIdentity.init({
+                APIUrl: NETLIFY_URL + "/.netlify/identity"
+            });
+
+            // State Evaluation Function
+            function evaluateUserSession() {
+                const user = window.netlifyIdentity.currentUser();
                 
-                window.netlifyIdentity.init({
-                    APIUrl: NETLIFY_URL + "/.netlify/identity"
-                });
-
-                // Auto-refresh Decap CMS panel if user is already logged in
-                window.netlifyIdentity.on("login", () => {
-                    window.location.reload();
-                });
-            } else {
-                console.error("Critical Failure: Identity script assets failed to load from CDN.");
+                if (user) {
+                    // Hide our fallback login block completely
+                    document.getElementById("login-container").style.display = "none";
+                    
+                    // Boot up Decap CMS now that it's safe to do so
+                    if (window.CMS) {
+                        window.CMS.init();
+                    }
+                } else {
+                    // Ensure the button event listener handles the handshake click cleanly
+                    document.getElementById("login-btn-trigger").onclick = () => {
+                        window.netlifyIdentity.open("login");
+                    };
+                }
             }
-        }
 
-        // Standard Event Listener Attachment Hook
-        document.getElementById("manual-login-trigger").addEventListener("click", () => {
-            if (window.netlifyIdentity) {
-                window.netlifyIdentity.open("login");
-            } else {
-                alert("The secure identity application layer is still loading from the server. Please wait 3 seconds and try again.");
-            }
+            // Run evaluations on load
+            evaluateUserSession();
+
+            // Handle the state change loops seamlessly when users complete the popup forms
+            window.netlifyIdentity.on("login", () => {
+                evaluateUserSession();
+            });
+            window.netlifyIdentity.on("logout", () => {
+                window.location.reload();
+            });
         });
-
-        // Initialize script parameters seamlessly on page load
-        document.addEventListener("DOMContentLoaded", initializeIdentityBridge);
     </script>
 </body>
 </html>
