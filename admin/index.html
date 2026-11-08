@@ -5,44 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Content Manager Dashboard</title>
     
+    <!-- 1. External Styling definitions (keeps HTML structure readable) -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .login-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .login-btn {
+            padding: 14px 32px;
+            font-size: 16px;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .login-btn:hover {
+            background-color: #b71c1c;
+        }
+    </style>
+
+    
     </script>
-    <!-- Loads Decap CMS Core -->
     <script src="https://unpkg.com@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
 
-    <!-- This container holds a fallback login screen if Decap does not auto-load -->
+    <!-- Visual Dashboard Entry State Wrapper -->
     <div id="nc-root">
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: system-ui, sans-serif; background-color: #f5f5f5;">
-            <div style="background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
-                <h1 style="margin-bottom: 0.5rem; color: #333;">Dashboard Entry</h1>
-               <button> <p style="color: #666; margin-bottom: 1.5rem;">Access the visual static content editor panel.</p>
+        <div class="login-wrap">
+            <div class="login-box">
+                <h1 style="color: #333; margin: 0 0 10px 0;">Dashboard Entry</h1>
+                <p style="color: #666; margin: 0 0 25px 0;">Access the visual static content editor panel.</p>
                 
-                <!-- Fixed, clean action button -->
-                
+                <!-- Fixed Explicit Event Listener Trigger -->
+                <button class="login-btn" id="manual-login-trigger">
                     Log In with Netlify Identity
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Script layer initializing the handshake connection -->
+    <!-- 3. Explicit Connection Bridge Logic -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
+        // ⚠️ DEFINE YOUR TARGET NETLIFY INSTANCE HERE
+        // Replace this string with your exact site name from your Netlify control board!
+        const NETLIFY_URL = "https://fascinating-moonbeam-cb13ec.netlify.app";
+
+        // Safe Fallback Initialization Function
+        function initializeIdentityBridge() {
             if (window.netlifyIdentity) {
-                // ⚠️ IMPORTANT: Change the line below to match your actual Netlify App URL!
+                console.log("Netlify Identity script detected. Linking instance...");
+                
                 window.netlifyIdentity.init({
-                    APIUrl: "https://fascinating-moonbeam-cb13ec.netlify.app/"
+                    APIUrl: NETLIFY_URL + "/.netlify/identity"
                 });
 
-                // Detect when user logs in successfully and route them into the CMS UI
-                window.netlifyIdentity.on("login", (user) => {
-                    if (user) {
-                        window.location.reload();
-                    }
+                // Auto-refresh Decap CMS panel if user is already logged in
+                window.netlifyIdentity.on("login", () => {
+                    window.location.reload();
                 });
+            } else {
+                console.error("Critical Failure: Identity script assets failed to load from CDN.");
+            }
+        }
+
+        // Standard Event Listener Attachment Hook
+        document.getElementById("manual-login-trigger").addEventListener("click", () => {
+            if (window.netlifyIdentity) {
+                window.netlifyIdentity.open("login");
+            } else {
+                alert("The secure identity application layer is still loading from the server. Please wait 3 seconds and try again.");
             }
         });
+
+        // Initialize script parameters seamlessly on page load
+        document.addEventListener("DOMContentLoaded", initializeIdentityBridge);
     </script>
 </body>
 </html>
