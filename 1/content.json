@@ -14,7 +14,7 @@
           "navLabel": "1. Overview",
           "heading": "Introduction to the Exhibition",
           "text": "This opening section outlines our complete core collection. Over the past decade, volunteers have meticulously archived these physical layout spaces, ensuring that fragile documents are preserved for future generations. Visitors will find that our digital footprint bridges the gap between historical field logs and interactive educational modules.",
-          "images": ["https://picsum.photos", "https://picsum.photos"]
+          "images": ["../cfhs_seal.png", "https://picsum.photos"]
         },
         {
           "pointId": "exhibits-timeline",
