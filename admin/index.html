@@ -7,5 +7,25 @@
     <!-- Include the script that builds the page framework automatically -->
     <script src="https://unpkg.com@^3.0.0/dist/decap-cms.js"></script>
   </head>
-  <body></body>
+  <body>
+
+
+    <script>
+  // Force the login script engine to link directly to your Netlify application service instance
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.netlifyIdentity) {
+      // ⚠️ CHANGE THIS to your exact Netlify site URL from your Netlify Dashboard
+      window.netlifyIdentity.init({
+        APIUrl: "https://fascinating-moonbeam-cb13ec.netlify.app/"
+      });
+      
+      // Auto-trigger the popup window immediately if no active user session is found
+      if (!window.netlifyIdentity.currentUser()) {
+        window.netlifyIdentity.open("login");
+      }
+    }
+  });
+</script>
+
+  </body>
 </html>
