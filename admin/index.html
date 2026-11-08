@@ -1,41 +1,48 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Content Manager | Canal Fulton Heritage Society</title>
-    <!-- Include the script that builds the page framework automatically -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Manager Dashboard</title>
+    
+    </script>
+    <!-- Loads Decap CMS Core -->
     <script src="https://unpkg.com@^3.0.0/dist/decap-cms.js"></script>
-  </head>
-  
+</head>
 <body>
-  <!-- Decap CMS will mount here, but this button ensures a clean fallback pointer exists -->
-  <div id="nc-root">
-    <div style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif;">
-      
-        Log In to Content Manager
-      </button>
+
+    <!-- This container holds a fallback login screen if Decap does not auto-load -->
+    <div id="nc-root">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: system-ui, sans-serif; background-color: #f5f5f5;">
+            <div style="background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+                <h1 style="margin-bottom: 0.5rem; color: #333;">Dashboard Entry</h1>
+                <p style="color: #666; margin-bottom: 1.5rem;">Access the visual static content editor panel.</p>
+                
+                <!-- Fixed, clean action button -->
+                
+                    Log In with Netlify Identity
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 
-
-
+    <!-- Script layer initializing the handshake connection -->
     <script>
-  // Force the login script engine to link directly to your Netlify application service instance
-  document.addEventListener("DOMContentLoaded", () => {
-    if (window.netlifyIdentity) {
-      // ⚠️ CHANGE THIS to your exact Netlify site URL from your Netlify Dashboard
-      window.netlifyIdentity.init({
-        APIUrl: "https://fascinating-moonbeam-cb13ec.netlify.app/"
-      });
-      
-      // Auto-trigger the popup window immediately if no active user session is found
-      if (!window.netlifyIdentity.currentUser()) {
-        window.netlifyIdentity.open("login");
-      }
-    }
-  });
-</script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (window.netlifyIdentity) {
+                // ⚠️ IMPORTANT: Change the line below to match your actual Netlify App URL!
+                window.netlifyIdentity.init({
+                    APIUrl: "https://fascinating-moonbeam-cb13ec.netlify.app/"
+                });
 
-  </body>
+                // Detect when user logs in successfully and route them into the CMS UI
+                window.netlifyIdentity.on("login", (user) => {
+                    if (user) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
 </html>
