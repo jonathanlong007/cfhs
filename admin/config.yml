@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: github
   repo: jonathanlong007/cfhs # Replace with your repo link
   branch: main
   open_authoring: true # <-- allow volunteers to submit
