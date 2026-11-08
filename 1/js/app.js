@@ -109,8 +109,8 @@ function triggerPointActivation(topicId, pointId) {
 }
 
 function moveSlide(direction) {
-    //if (currentActiveImages.length === 0) return;
-    currentSlideIndex = (currentSlideIndex + direction + currentActiveImages.length) //% currentActiveImages.length;
+    if (currentActiveImages.length === 0) return;
+    currentSlideIndex = (currentSlideIndex + direction + currentActiveImages.length) % currentActiveImages.length;
     updateCarouselPosition();
 }
 
