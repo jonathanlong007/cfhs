@@ -1,0 +1,34 @@
+media:
+  input: _data/museums     # Folder in your GitHub repo where images are stored
+  output: _data/museums  # HTML/Markdown uses to load images
+
+content:
+  - name: posts
+    label: News & Blog Posts
+    type: collection
+    path: _posts           # Folder containing your posts (e.g., _posts or content/news)
+    fields:
+      - name: title
+        label: Post Title
+        type: string
+      - name: date
+        label: Publish Date
+        type: date
+      - name: image
+        label: Featured Image
+        type: image
+      - name: body
+        label: Content
+        type: rich-text
+
+  - name: heritage-house.yml
+    label: Heritage House
+    type: file
+    path: _data/museums         # Single page file in your repo
+    fields:
+      - name: title
+        label: Page Title
+        type: string
+      - name: hours
+        label: Opening Hours
+        type: rich-text
