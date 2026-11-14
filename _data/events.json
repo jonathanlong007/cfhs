@@ -2,11 +2,15 @@
   {
     "title": "Event 1",
     "date": "2026-11-13",
+    "time": "12 Noon",
+    "location": "At the Square",
     "description": "Event desc"
   },
   {
     "title": "Event 2",
     "date": "2026-11-13",
+    "time": "5:00 PM EST",
+    "location": "At the Library Room B",
     "description": "Event 2\nEvent 2 *** IMPORTANT UPDATE ****"
   }
 ]
