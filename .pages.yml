@@ -17,6 +17,14 @@ content:
     format: json
     list: true
     fields:
+      - name: Events
+        label: Community Events
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title} — {date}"
+    fields:
       - name: title
         label: Event Title
         type: string
