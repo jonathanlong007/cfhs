@@ -1,4 +1,6 @@
-[
+{
+  "section_title": "Upcoming Community Events",
+  Events:[
   {
     "title": "Test",
     "date": "2026-11-13",
@@ -10,3 +12,4 @@
     "description": "Test"
   }
 ]
+}
