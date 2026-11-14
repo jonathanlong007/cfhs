@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Events</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 3rem 1rem;
+    }
+
+    .events-section {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.75rem;
+      padding: 0 0.5rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.85rem;
+      font-weight: 700;
+    }
+
+    /* Carousel Controls */
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nav-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text-main);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .nav-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Carousel Viewport & Track */
+    .carousel-viewport {
+      overflow: hidden;
+      padding: 0.5rem 0 1.5rem;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Event Card */
+    .event-card-wrapper {
+      flex: 0 0 33.3333%; /* 3 cards per view on desktop */
+      padding: 0 0.65rem;
+    }
+
+    @media (max-width: 900px) {
+      .event-card-wrapper { flex: 0 0 50%; } /* 2 cards on tablet */
+    }
+
+    @media (max-width: 600px) {
+      .event-card-wrapper { flex: 0 0 100%; } /* 1 card on mobile */
+    }
+
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-image {
+      position: relative;
+      height: 185px;
+      background-color: #cbd5e1;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .category-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+    }
+
+    .date-pill {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: var(--card-bg);
+      color: var(--text-main);
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .card-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .card-btn {
+      display: inline-block;
+      text-align: center;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .card-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Dot Indicators */
+    .dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: #cbd5e1;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dot.active {
+      background: var(--primary);
+      width: 24px;
+      border-radius: 999px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="events-section" id="carousel-wrapper">
+    <div class="section-header">
+      <h2 id="section-title">Loading Events...</h2>
+      <div class="controls">
+        <button class="nav-btn" id="prev-btn" aria-label="Previous event">&#8592;</button>
+        <button class="nav-btn" id="next-btn" aria-label="Next event">&#8594;</button>
+      </div>
+    </div>
+
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="carousel-track"></div>
+    </div>
+
+    <div class="dots-container" id="dots-container"></div>
+  </section>
+
+  <script>
+    const track = document.getElementById('carousel-track');
+    const dotsContainer = document.getElementById('dots-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const wrapper = document.getElementById('carousel-wrapper');
+
+    let currentIndex = 0;
+    let totalItems = 0;
+    let autoPlayInterval;
+
+    // Format ISO date (YYYY-MM-DD) into a readable badge (e.g., "Nov 20, 2026")
+    function formatDate(dateStr) {
+      const date = new Date(dateStr + 'T00:00:00');
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    // Determine how many cards are visible based on screen width
+    function getVisibleCards() {
+      if (window.innerWidth <= 600) return 1;
+      if (window.innerWidth <= 900) return 2;
+      return 3;
+    }
+
+    function updateCarousel() {
+      const visibleCards = getVisibleCards();
+      const maxIndex = Math.max(0, totalItems - visibleCards);
+      
+      if (currentIndex > maxIndex) currentIndex = 0;
+      if (currentIndex < 0) currentIndex = maxIndex;
+
+      const shiftPercentage = (100 / visibleCards) * currentIndex;
+      track.style.transform = `translateX(-${shiftPercentage}%)`;
+
+      // Update active dot
+      document.querySelectorAll('.dot').forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentIndex);
+      });
+    }
+
+    function buildDots() {
+      dotsContainer.innerHTML = '';
+      const visibleCards = getVisibleCards();
+      const slideCount = Math.max(1, totalItems - visibleCards + 1);
+
+      for (let i = 0; i < slideCount; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === currentIndex ? ' active' : '');
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+        });
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(() => {
+        currentIndex++;
+        updateCarousel();
+      }, 4500); // Rotate every 4.5 seconds
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+
+    async function initEventsCarousel() {
+      try {
+        const response = await fetch('_data/events.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('Could not load _data/events.json');
+        
+        const data = await response.json();
+        document.getElementById('section-title').textContent = data.section_title || 'Upcoming Events';
+
+        const events = data.events || [];
+        totalItems = events.length;
+
+        track.innerHTML = events.map(event => `
+          <div class="event-card-wrapper">
+            <article class="event-card">
+              <div class="card-image">
+                <img src="${event.image}" alt="${event.title}" loading="lazy">
+                <span class="category-badge">${event.category}</span>
+                <span class="date-pill">${formatDate(event.date)}</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">${event.title}</h3>
+                <div class="card-meta">
+                  <span>🕒 ${event.time}</span>
+                  <span>📍 ${event.location}</span>
+                </div>
+                <p class="card-desc">${event.description}</p>
+                <a href="${event.link}" class="card-btn">Event Details</a>
+              </div>
+            </article>
+          </div>
+        `).join('');
+
+        buildDots();
+        updateCarousel();
+        startAutoPlay();
+
+        // Navigation listeners
+        nextBtn.addEventListener('click', () => {
+          currentIndex++;
+          updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+          currentIndex--;
+          updateCarousel();
+        });
+
+        // Pause auto-rotation when user hovers or focuses inside the carousel
+        wrapper.addEventListener('mouseenter', stopAutoPlay);
+        wrapper.addEventListener('mouseleave', startAutoPlay);
+
+        // Recalculate layout on window resize
+        window.addEventListener('resize', () => {
+          buildDots();
+          updateCarousel();
+        });
+
+      } catch (error) {
+        console.error(error);
+        document.getElementById('section-title').textContent = 'Unable to load events.';
+      }
+    }
+
+    initEventsCarousel();
+  </script>
+</body>
+</html>
