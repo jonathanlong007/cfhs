@@ -10,3 +10,20 @@ content:
       - name: description
         label: Description
         type: text
+  - name: events
+    label: Historical Events
+    type: file
+    path: data/events.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Event Title
+        type: string
+      - name: date
+        label: Event Date
+        type: date
+      - name: description
+        label: Description
+        type: text
+
