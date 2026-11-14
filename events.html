@@ -310,68 +310,63 @@
       clearInterval(autoPlayInterval);
     }
 
-    async function initEventsCarousel() {
-      try {
-        const response = await fetch('_data/events.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error('Could not load _data/events.json');
-        
-        const data = await response.json();
-        document.getElementById('section-title').textContent = data.section_title || 'Upcoming Events';
+  async function initEventsCarousel() {
+  try {
+    const response = await fetch('_data/events.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Could not load _data/events.json');
+    
+    // The parsed JSON is now directly the array of events
+    const events = await response.json();
+    totalItems = events.length;
 
-        const events = data.events || [];
-        totalItems = events.length;
-
-        track.innerHTML = events.map(event => `
-          <div class="event-card-wrapper">
-            <article class="event-card">
-              <div class="card-image">
-                <img src="${event.image}" alt="${event.title}" loading="lazy">
-                <span class="category-badge">${event.category}</span>
-                <span class="date-pill">${formatDate(event.date)}</span>
-              </div>
-              <div class="card-body">
-                <h3 class="card-title">${event.title}</h3>
-                <div class="card-meta">
-                  <span>🕒 ${event.time}</span>
-                  <span>📍 ${event.location}</span>
-                </div>
-                <p class="card-desc">${event.description}</p>
-                <a href="${event.link}" class="card-btn">Event Details</a>
-              </div>
-            </article>
+    track.innerHTML = events.map(event => `
+      <div class="event-card-wrapper">
+        <article class="event-card">
+          <div class="card-image">
+            <img src="${event.image}" alt="${event.title}" loading="lazy">
+            <span class="category-badge">${event.category}</span>
+            <span class="date-pill">${formatDate(event.date)}</span>
           </div>
-        `).join('');
+          <div class="card-body">
+            <h3 class="card-title">${event.title}</h3>
+            <div class="card-meta">
+              <span>🕒 ${event.time}</span>
+              <span>📍 ${event.location}</span>
+            </div>
+            <p class="card-desc">${event.description}</p>
+            <a href="${event.link}" class="card-btn">Event Details</a>
+          </div>
+        </article>
+      </div>
+    `).join('');
 
-        buildDots();
-        updateCarousel();
-        startAutoPlay();
+    buildDots();
+    updateCarousel();
+    startAutoPlay();
 
-        // Navigation listeners
-        nextBtn.addEventListener('click', () => {
-          currentIndex++;
-          updateCarousel();
-        });
+    nextBtn.addEventListener('click', () => {
+      currentIndex++;
+      updateCarousel();
+    });
 
-        prevBtn.addEventListener('click', () => {
-          currentIndex--;
-          updateCarousel();
-        });
+    prevBtn.addEventListener('click', () => {
+      currentIndex--;
+      updateCarousel();
+    });
 
-        // Pause auto-rotation when user hovers or focuses inside the carousel
-        wrapper.addEventListener('mouseenter', stopAutoPlay);
-        wrapper.addEventListener('mouseleave', startAutoPlay);
+    wrapper.addEventListener('mouseenter', stopAutoPlay);
+    wrapper.addEventListener('mouseleave', startAutoPlay);
 
-        // Recalculate layout on window resize
-        window.addEventListener('resize', () => {
-          buildDots();
-          updateCarousel();
-        });
+    window.addEventListener('resize', () => {
+      buildDots();
+      updateCarousel();
+    });
 
-      } catch (error) {
-        console.error(error);
-        document.getElementById('section-title').textContent = 'Unable to load events.';
-      }
-    }
+  } catch (error) {
+    console.error(error);
+    document.getElementById('section-title').textContent = 'Unable to load events.';
+  }
+}
 
     initEventsCarousel();
   </script>
