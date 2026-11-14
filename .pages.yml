@@ -13,7 +13,7 @@ content:
   - name: events
     label: Historical Events
     type: file
-    path: data/events.json
+    path: _data/events.json
     format: json
     list: true
     fields:
