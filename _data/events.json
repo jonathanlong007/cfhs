@@ -3,5 +3,10 @@
     "title": "Event 1",
     "date": "2026-11-13",
     "description": "Event desc"
+  },
+  {
+    "title": "Event 2",
+    "date": "2026-11-13",
+    "description": "Event 2"
   }
 ]
