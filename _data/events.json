@@ -19,5 +19,19 @@
     "time": "9AM - 11AM",
     "location": "Canal Fulton Library",
     "description": "Join us for cookies and cocoa at the library."
+  },
+  {
+    "title": "Christmas on the Canal",
+    "date": "2026-11-27",
+    "time": "7PM",
+    "location": "Heritage Museum",
+    "description": "Join us for games and quizing"
+  },
+  {
+    "title": "Christmas on Canal",
+    "date": "2026-12-05",
+    "time": "12 Noon",
+    "location": "Main Street",
+    "description": "March to Canal"
   }
 ]
