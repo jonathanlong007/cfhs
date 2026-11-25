@@ -12,5 +12,12 @@
     "time": "5:00 PM EST",
     "location": "At the Library Room B",
     "description": "Event 2\nEvent 2 *** IMPORTANT UPDATE ****"
+  },
+  {
+    "title": "Christmas on the Canal",
+    "date": "2026-11-05",
+    "time": "9AM - 11AM",
+    "location": "Canal Fulton Library",
+    "description": "Join us for cookies and cocoa at the library."
   }
 ]
